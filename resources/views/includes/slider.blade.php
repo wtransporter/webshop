@@ -25,11 +25,11 @@
             <!-- Slide 3 -->
             <li class="bg1">
                 <!-- Slide Title -->
-                <h2 class="title">Feature Rich</h2>
+                <h2 class="title"></h2>
                 <!-- Slide Text -->
-                <h3 class="subtitle">Huge amount of components and over 30 sample pages!</h3>
+                <h3 class="subtitle"></h3>
                 <!-- Slide Image -->
-                <img class="slide-img" src="img/homepage-slider/slide3.png" alt="Slide 3" />
+                {{-- <img class="slide-img" src="img/homepage-slider/slide3.png" alt="Slide 3" /> --}}
             </li>
             <!-- End Slide 3 -->
         </ul>

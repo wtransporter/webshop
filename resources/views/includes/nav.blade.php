@@ -51,7 +51,7 @@
         </div>
         <nav id="mainmenu" class="mainmenu">
             <ul>
-                <li class="logo-wrapper"><a href="{{ route('home') }}"><img src="img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+                <li class="logo-wrapper"><a href="{{ route('home') }}"><img src="img/logo.png" alt="WebShop"></a></li>
                 <li class="active">
                     <a href="{{ route('home') }}">Home</a>
                 </li>

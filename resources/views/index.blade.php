@@ -5,6 +5,8 @@
 
 
 @include ('includes.slider')
+                    
+@include ('includes.breadcrumb', ['title' => 'Najnoviji proizvodi'])
 
 @include ('includes.press')
 
