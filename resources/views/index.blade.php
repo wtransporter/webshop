@@ -8,28 +8,22 @@
                     
 @include ('includes.breadcrumb', ['title' => 'Najnoviji proizvodi'])
 
-@include ('includes.press')
 
+@include ('includes.product_slider', ['articles' => $featured])
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">WELCOME</div>
+@include ('includes.breadcrumb', ['title' => 'Aktuelni proizvodi'])
 
-                <div class="card-body">
-                    INDEX PAGE
-                </div>
-            </div>
-        </div>
+<div class="section">
+    <div class="container">    
+
+        @include ('includes.product', ['articles' => $articles])
+
     </div>
 </div>
 
-@include ('includes.services')
-
 @include ('includes.action')
 
-@include ('includes.testimonials')
+@include ('includes.map')
 
 @endsection
 

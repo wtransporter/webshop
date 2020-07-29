@@ -3,8 +3,27 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="calltoaction-wrapper">
-                    <h3>It's a free multipurpose Bootstrap 3 template!</h3> <a href="http://www.dragdropsite.com" class="btn btn-orange">Download here!</a>
+                <div class="calltoactin-wrapper">
+                    <div class="row">
+	                    <div class="col-md-4">
+					        <div class="box-simple">
+					            <div class="icon"><i class="icon-map-marker" aria-hidden="true"></i></div>
+					            <p>DP Products, Njegoševa 19 <br>11000 Beograd, <strong>Srbija</strong></p>
+					        </div>
+	                    </div>
+	                    <div class="col-md-4">
+					        <div class="box-simple">
+					            <div class="icon"><i class="icon-phone" aria-hidden="true"></i></div>
+					            <p>DP Products, Njegoševa 19 <br>11000 Beograd, <strong>Srbija</strong></p>
+					        </div>
+	                    </div>
+	                    <div class="col-md-4">
+					        <div class="box-simple">
+					            <div class="icon"><i class="icon-envelope" aria-hidden="true"></i></div>
+					            <p>DP Products, Njegoševa 19 <br>11000 Beograd, <strong>Srbija</strong></p>
+					        </div>
+	                    </div>
+					</div>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Article;
+use App\Category;
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -29,12 +30,20 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 $factory->define(Article::class, function (Faker $faker) {
+    $title = $faker->name;
     return [
-        'title' => $faker->name,
+        'title' => $title,
+        'slug' => Str::slug($title,'-'),
         'manufacturer' => $faker->name,
         'description' => $faker->name,
-        'item_code' => rand(1, 99999),
-        'fk_category_id' => rand(1, 99999),
+        'code' => rand(1, 99999),
+        'category_id' => rand(1, 99999),
 
+    ];
+});
+
+$factory->define(Category::class, function (Faker $faker) {
+    return [
+        'title' => $faker->name,
     ];
 });
