@@ -146,7 +146,7 @@
 
 
         @yield('content')
-        
+      
 
         @include ('includes.footer')
 
