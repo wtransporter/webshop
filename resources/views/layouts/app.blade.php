@@ -148,7 +148,6 @@
         @yield('content')
         
 
-
         @include ('includes.footer')
 
     </body>
