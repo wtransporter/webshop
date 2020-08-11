@@ -10,10 +10,10 @@
                     @endauth
                     <li>
                         <div class="dropdown choose-country">
-                            <a class="#" data-toggle="dropdown" href="#"><img src="img/flags/rs.png" alt="Srbija"> SRB</a>
+                            <a class="#" data-toggle="dropdown" href="#"><img src="{{ asset('img/flags/rs.png') }}" alt="Srbija"> SRB</a>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="menuitem"><a href="#"><img src="img/flags/de.png" alt="Germany"> DE</a></li>
-                                <li role="menuitem"><a href="#"><img src="img/flags/es.png" alt="Spain"> ES</a></li>
+                                <li role="menuitem"><a href="#"><img src="{{ asset('img/flags/de.png') }}" alt="Germany"> DE</a></li>
+                                <li role="menuitem"><a href="#"><img src="{{ asset('img/flags/es.png') }}" alt="Spain"> ES</a></li>
                             </ul>
                         </div>
                     </li>
@@ -51,7 +51,7 @@
         </div>
         <nav id="mainmenu" class="mainmenu">
             <ul>
-                <li class="logo-wrapper"><a href="{{ route('home') }}"><img src="img/logo.png" alt="WebShop"></a></li>
+                <li class="logo-wrapper"><a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" alt="WebShop"></a></li>
                 <li class="active">
                     <a href="{{ route('home') }}">Home</a>
                 </li>
@@ -65,7 +65,7 @@
                             @foreach ($categories as $category)
                                 @if ($loop->first || (fmod($loop->iteration, 5) == 1))
                                 <row>
-                                <div class="col-lg-3">
+                                <div class="col-xs-4 col-md-3 col-lg-3">
                                 @endif
                                 <h4>{{ $category->title }}</h4>
                                 <ul>

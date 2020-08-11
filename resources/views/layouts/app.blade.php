@@ -13,19 +13,19 @@
 
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
-        <link rel="shortcut icon" href="/img/favicon/favicon.ico">
+        <link rel="shortcut icon" href="{{ asset('/img/favicon/favicon.ico') }}">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/icomoon-social.css">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/icomoon-social.css') }}">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="css/leaflet.css" />
+        <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}" />
         <!--[if lte IE 8]>
             <link rel="stylesheet" href="css/leaflet.ie.css" />
         <![endif]-->
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
-        <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="{{ asset('js/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 
 <style>
     * {

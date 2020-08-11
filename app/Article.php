@@ -11,13 +11,18 @@ class Article extends Model
     public function path()
     {
     	return '/articles/'.$this->slug;
-    }
+    }    
 
     public function imagePath()
     {
     	$imagePath = '/images/proizvodi/'.$this->id.'/160x160_'.$this->image;
     	
     	return file_exists(public_path().$imagePath) ? $imagePath : noImage();
+    }
+
+    public function imageBasePath()
+    {
+        return '/images/proizvodi/'.$this->id;
     }
 
     public function getRouteKeyName()
