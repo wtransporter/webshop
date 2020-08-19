@@ -19,10 +19,9 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/articles/{article}', 'ArticlesController@show');
 
-Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',
-    ['middleware' => 'auth']], function () {
+Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
 
-    Route::get('/articles', 'ArticlesController@index');
+    Route::get('/articles', 'ArticlesController@index')->middleware('admin');
 
 });
 

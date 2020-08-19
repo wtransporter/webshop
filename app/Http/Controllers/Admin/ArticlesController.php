@@ -8,13 +8,16 @@ use App\Http\Controllers\Controller;
 
 class ArticlesController extends Controller
 {
-    public function __condtruct()
+    
+    public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin');
     }
     
     public function index()
     {
+        // $this->authorize('manage');
+
         $articles = Article::all();
 
         return view('admin.index', compact('articles'));
