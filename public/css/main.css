@@ -2979,3 +2979,7 @@ span.color-red {
 .pl-5,
 .px-5 {
   padding-left: 3rem !important; }
+
+.align-middle {
+  vertical-align: middle !important;
+}

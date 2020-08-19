@@ -34,5 +34,17 @@ class ViewArticlesTest extends TestCase
             ->assertSee($article->title);
     }
 
+    /** @test */
+    public function authenticated_users_may_see_articles()
+    {
+        // $this->withoutExceptionHandling();
+        $this->signIn();
+
+        $article = factory(Article::class)->create();
+
+        $this->get('/tp-admin/articles')
+            ->assertSee($article->title);
+    }
+
 
 }

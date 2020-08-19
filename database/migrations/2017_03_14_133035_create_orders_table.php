@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id');
             $table->double('amount', 15,2)->default(0);
             $table->double('total_price', 15,2)->default(0);
             $table->tinyInteger('status')->default(1);

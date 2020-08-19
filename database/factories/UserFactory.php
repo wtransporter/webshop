@@ -20,8 +20,15 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $firstName = $faker->firstName;
+    $lastName = $faker->lastName;
+
     return [
-        'name' => $faker->name,
+        'name' => $firstName .' '.$lastName,
+        'first_name' => $firstName,
+        'last_name' => $lastName,
+        'address' => $faker->streetAddress,
+        'phone' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
@@ -30,14 +37,17 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 $factory->define(Article::class, function (Faker $faker) {
-    $title = $faker->name;
+    $title = ucfirst($faker->words(3, true));
     return [
         'title' => $title,
         'slug' => Str::slug($title,'-'),
-        'manufacturer' => $faker->name,
-        'description' => $faker->name,
-        'code' => rand(1, 99999),
-        'category_id' => rand(1, 99999),
+        'manufacturer' => $faker->company,
+        'description' => $faker->sentence,
+        'code' => $faker->ean13,
+        'category_id' => rand(1, 10),
+        'active' => 1,
+        'price' => rand(80,3999),
+        'amount' => rand(0,50)
 
     ];
 });

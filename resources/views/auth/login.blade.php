@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col-sm-5 col-sm-offset-3">
                 <div class="basic-login">
+                    @include('includes.message')
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">

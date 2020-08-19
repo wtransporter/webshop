@@ -19,4 +19,11 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/articles/{article}', 'ArticlesController@show');
 
+Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',
+    ['middleware' => 'auth']], function () {
+
+    Route::get('/articles', 'ArticlesController@index');
+
+});
+
 Auth::routes();
