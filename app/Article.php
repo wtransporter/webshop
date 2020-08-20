@@ -10,8 +10,13 @@ class Article extends Model
 
     public function path()
     {
-    	return '/articles/'.$this->slug;
+    	return '/articles/'. $this->slug;
     }    
+    
+    public function adminPath()
+    {
+    	return '/tp-admin/articles/'. $this->slug;
+    }
 
     public function imagePath()
     {

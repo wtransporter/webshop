@@ -21,7 +21,11 @@ Route::get('/articles/{article}', 'ArticlesController@show');
 
 Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
 
-    Route::get('/articles', 'ArticlesController@index')->middleware('admin');
+    Route::get('/articles', 'ArticlesController@index');
+    Route::get('/articles/create', 'ArticlesController@create');
+    Route::get('/articles/{article}', 'ArticlesController@show');
+    Route::post('/articles', 'ArticlesController@store');
+    Route::delete('/articles/{article}', 'ArticlesController@destroy');
 
 });
 

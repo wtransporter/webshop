@@ -12,7 +12,12 @@ function formatedDate($date)
 
 function formatedPrice($price)
 {
-	return number_format($price,2,',','.');
+	return number_format($price, 2, ",", ".");
+}
+
+function mySqlPrice($price)
+{
+	return number_format((float) $price, 2, ".", "");
 }
 
 function noImage()

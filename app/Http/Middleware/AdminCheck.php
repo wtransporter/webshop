@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 
 class AdminCheck
 {
@@ -16,12 +17,14 @@ class AdminCheck
      */
     public function handle($request, Closure $next)
     {
-        //dd(!! $request->user()->head);
-        if (!! $request->user()->head) {
-            return redirect(RouteServiceProvider::HOME);
+        $isAdmin = $request->user() ? $request->user()->isAdmin() : false;
+
+        if (Auth::check() && $isAdmin) {
+            return $next($request);
         }
 
-        return $next($request);
+        // abort(404);
+        return redirect('/login');
     }
 
 }
