@@ -751,10 +751,10 @@
 <script src="{{ asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-{{-- <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js') }}"></script> --}}
+{{-- <script src="{{ asset('dist/js/demo.js') }}"></script> --}}
 
 
     <!-- DataTables -->
@@ -771,7 +771,10 @@
             'info'        : true,
             'autoWidth'   : false
             })
-        })
+        });
+
+        $('.sparkbar').sparkline('html', {type: 'bar'} );
+        // $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
     </script>
 </body>
 </html>

@@ -44,11 +44,11 @@ $factory->define(Article::class, function (Faker $faker) {
         'manufacturer' => $faker->company,
         'description' => $faker->sentence,
         'code' => $faker->ean13,
-        'category_id' => rand(1, 10),
+        'category_id' => 1,
         'active' => 1,
         'price' => rand(80,3999),
-        'amount' => rand(0,50)
-
+        'amount' => rand(0,50),
+        'tax' => 'S1'
     ];
 });
 

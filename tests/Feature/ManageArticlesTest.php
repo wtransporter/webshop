@@ -9,7 +9,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ViewArticlesTest extends TestCase
+class ManageArticlesTest extends TestCase
 {
     use RefreshDatabase, DatabaseMigrations;
 
@@ -63,6 +63,35 @@ class ViewArticlesTest extends TestCase
     }
 
     /** @test */
+    public function authenticated_users_may_update_articles()
+    {
+        // $this->withoutExceptionHandling();
+        
+        $this->signIn($user = factory(User::class)->create(['head' => 1]));
+
+        $article = factory(Article::class)->create(['description' => 'Foo']);
+
+        $attributes = [
+            'title' => 'updated',
+            'slug' => $article->slug,
+            'manufacturer' => 'updated',
+            'description' => 'updated',
+            'code' => '123456789',
+            'category_id' => 1,
+            'active' => 1,
+            'price' => 10,
+            'amount' => 1,
+            'tax' => 'S1'            
+        ];
+
+        $this->patch('/tp-admin/articles/'. $article->slug, $attributes);
+
+        $this->get($article->adminPath().'/edit')->assertOk();
+        
+        $this->assertDatabaseHas('articles', $attributes);
+    }
+
+    /** @test */
     public function authenticated_users_may_delete_articles()
     {
         // $this->withoutExceptionHandling();
@@ -74,6 +103,19 @@ class ViewArticlesTest extends TestCase
         $this->delete('/tp-admin/articles/'. $article->slug);
         
         $this->assertDatabaseMissing('articles', ['id' => $article->id]);
+    }
+
+    /** @test */
+    public function unauthenticated_users_may_not_delete_articles()
+    {
+        // $this->withoutExceptionHandling();
+        
+        $this->signIn();
+
+        $article = factory(Article::class)->create();
+
+        $this->delete('/tp-admin/articles/'. $article->slug)->assertRedirect('/login');
+
     }
 
     /** @test */

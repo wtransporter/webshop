@@ -21,12 +21,12 @@ class ArticlesController extends Controller
 
         $articles = Article::all();
 
-        return view('admin.index', compact('articles'));
+        return view('admin.articles.index', compact('articles'));
     }
 
-    public function show(Article $article)
+    public function edit(Article $article)
     {
-        return view ('admin.articles.show', compact('article'));
+        return view ('admin.articles.edit', compact('article'));
     }
 
     public function create()
@@ -34,18 +34,17 @@ class ArticlesController extends Controller
         return view('admin.articles.create');
     }
 
+    public function update(Article $article)
+    {
+        $article->update($this->validateRequest());
+
+        return redirect($article->adminPath().'/edit')->with('flash', 'Changes successfully steored !');
+    }
+
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'slug' => 'required',
-            'manufacturer' => 'required',
-            'description' => 'required',
-            'code' => 'required',
-            'category_id' => 'required',
-            'price' => 'required',
-            'amount' => 'required',
-        ]);
+        $this->validateRequest($request);
+
 // dd(request('active'));
         $article = Article::create([
             'title' => request('title'),
@@ -74,5 +73,21 @@ class ArticlesController extends Controller
         $article->delete();
 
         return redirect()->back();
+    }
+
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'manufacturer' => 'required',
+            'description' => 'required',
+            'code' => 'required',
+            'category_id' => 'required',
+            'active' => 'sometimes|required',
+            'price' => 'required',
+            'amount' => 'required',
+            'tax' => 'required'
+        ]);
     }
 }
