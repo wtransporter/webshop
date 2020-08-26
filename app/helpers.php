@@ -24,3 +24,8 @@ function noImage()
 {
 	return '/images/no-image.png';
 }
+
+function lPad($value, $count = 6, $character = '0')
+{
+	return str_pad($value, $count, $character, STR_PAD_LEFT);
+}

@@ -34,4 +34,9 @@ class Article extends Model
     {
         return 'slug';
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order')->withPivot('price');
+    }
 }

@@ -29,6 +29,8 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::post('/articles', 'ArticlesController@store');
     Route::delete('/articles/{article}', 'ArticlesController@destroy');
 
+    Route::get('/orders/{order}', 'OrdersController@show');
+
 });
 
 Auth::routes();

@@ -2,11 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\User;
+use App\Order;
 use App\Article;
 use App\Category;
-use App\User;
-use Faker\Generator as Faker;
+use App\ArticleOrder;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +57,24 @@ $factory->define(Article::class, function (Faker $faker) {
 $factory->define(Category::class, function (Faker $faker) {
     return [
         'title' => $faker->name,
+    ];
+});
+
+$factory->define(Order::class, function (Faker $faker) {
+    return [
+        'user_id' => factory(User::class)->create()->id,
+        'amount' => rand(1,5),
+        'total_price' => rand(2000,3999),
+        'status' => 0
+    ];
+});
+
+$factory->define(ArticleOrder::class, function (Faker $faker) {
+    return [
+        'order_id' => factory(Order::class)->create()->id,
+        'article_id' => factory(Article::class)->create()->id,
+        'amount' => rand(1,10),
+        'price' => rand(50, 2999),
+        'discount' => 0
     ];
 });

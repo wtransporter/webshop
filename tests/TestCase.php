@@ -2,13 +2,14 @@
 
 namespace Tests;
 
+use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    use CreatesApplication;
+    // use CreatesApplication;
 
     public function signIn($user = null)
     {
@@ -17,5 +18,10 @@ abstract class TestCase extends BaseTestCase
         $this->actingAs($user);
         
         return $user;
+    }
+
+    public function adminUser()
+    {
+        return $user = factory(User::class)->create(['head' => 1]);
     }
 }
