@@ -22,13 +22,16 @@ Route::get('/articles/{article}', 'ArticlesController@show');
 Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
 
     Route::get('/home', 'PagesController@index');
-    Route::get('/articles', 'ArticlesController@index');
-    Route::get('/articles/create', 'ArticlesController@create');
-    Route::get('/articles/{article}/edit', 'ArticlesController@edit');
-    Route::patch('/articles/{article}', 'ArticlesController@update');
-    Route::post('/articles', 'ArticlesController@store');
-    Route::delete('/articles/{article}', 'ArticlesController@destroy');
+    // Route::get('/articles', 'ArticlesController@index');
+    // Route::get('/articles/create', 'ArticlesController@create');
+    // Route::get('/articles/{article}/edit', 'ArticlesController@edit');
+    // Route::patch('/articles/{article}', 'ArticlesController@update');
+    // Route::post('/articles', 'ArticlesController@store');
+    // Route::delete('/articles/{article}', 'ArticlesController@destroy');
 
+    Route::resource('/articles', 'ArticlesController', ['except' => ['show']]);
+
+    Route::get('/orders/', 'OrdersController@index');
     Route::get('/orders/{order}', 'OrdersController@show');
 
 });

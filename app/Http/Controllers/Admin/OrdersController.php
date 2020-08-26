@@ -8,9 +8,16 @@ use App\Http\Controllers\Controller;
 
 class OrdersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function index()
     {
-        
+        $orders = Order::all();
+
+        return view('admin.orders.index', compact('orders'));
     }
 
     public function show(Order $order)
