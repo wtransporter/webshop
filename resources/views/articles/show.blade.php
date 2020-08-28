@@ -62,19 +62,22 @@
                         </td>
                     </tr>
                     <!-- Quantity -->
-                    <tr>
-                        <td><b>Quantity:</b></td>
-                        <td>
-                            <input type="text" class="form-control input-sm input-micro" value="1">
-                        </td>
-                    </tr>
-                    <!-- Add to Cart Button -->
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>
-                            <a href="#" class="btn btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
-                        </td>
-                    </tr>
+                    <form class="clear-form" action="/tp-admin/cart/{{ $article->id }}" method="GET">
+                        @csrf
+                        <tr>
+                            <td><b>Quantity:</b></td>
+                            <td>
+                                <input id="amount" name="amount" type="text" class="form-control input-sm input-micro" value="1">
+                            </td>
+                        </tr>
+                        <!-- Add to Cart Button -->
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <button type="submit" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</button>
+                            </td>
+                        </tr>     
+                    </form>
                 </table>
             </div>
             <!-- End Product Summary & Options -->

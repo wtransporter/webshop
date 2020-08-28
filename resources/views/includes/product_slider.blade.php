@@ -35,7 +35,11 @@
 						</div>
 						<!-- Buy Button -->
 						<div class="actions">
-							<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Dodaj u korpu</a>
+							<form class="clear-form" action="/tp-admin/cart/{{ $article->id }}" method="GET">
+								@csrf
+								{{-- <input id="amount" name="amount" type="text" class="form-control input-sm input-micro" value="1" hidden> --}}
+								<button type="submit" class="btn"><i class="icon-shopping-cart icon-white"></i> Dodaj u korpu</button>
+							</form>
 						</div>
 					</div>
 					<!-- End Products Slider Item -->

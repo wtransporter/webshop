@@ -2983,3 +2983,8 @@ span.color-red {
 .align-middle {
   vertical-align: middle !important;
 }
+
+.clear-form {
+	display: inline-block;
+	padding: 0px;
+}

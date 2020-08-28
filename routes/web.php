@@ -19,9 +19,16 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/articles/{article}', 'ArticlesController@show');
 
+Route::get('/profiles/{user}/history', 'HistoryOrdersController@index');
+Route::get('/profiles/{user}/history/{order}', 'HistoryOrdersController@show');
+
 Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
 
     Route::get('/home', 'PagesController@index');
+    Route::get('/cart', 'CartOrderController@index');
+    Route::get('/cart/{article:id}', 'CartOrderController@show');
+    Route::post('/cart', 'CartOrderController@store');
+    Route::delete('/cart/{article:id}', 'CartOrderController@destroy');
     // Route::get('/articles', 'ArticlesController@index');
     // Route::get('/articles/create', 'ArticlesController@create');
     // Route::get('/articles/{article}/edit', 'ArticlesController@edit');

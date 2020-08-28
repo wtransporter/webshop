@@ -5,7 +5,10 @@
             <div class="extras">
                 <ul>
                     @auth
-                        <li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>3 items</b></a>
+                        <li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i>
+                            {{-- <a href="page-shopping-cart.html"> --}}
+                            <a href="/tp-admin/cart">
+                                <b>{{ Session::has('cart') ? Session::get('cart')->totalSum : 0 }} items</b></a>
                         </li>
                     @endauth
                     <li>
@@ -27,7 +30,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{{ url('/cart/history') .'/'.Auth::user()->id }}">
+                                    <a href="/profiles/{{ Auth::user()->id }}/history">
                                         Prethodne kupovine
                                     </a>                                                                
                                 </li>
