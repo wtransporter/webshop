@@ -15,10 +15,10 @@
                                 </div>
                             </td>
                             <td>
-                                {{ $order->user->name }}
+                                OR{{ lPad($order->id) }}
                             </td>
                             <td>
-                                OR{{ lPad($order->id) }}
+                                {{ $order->user->name }}
                             </td>
                             <td class="event-venue hidden-xs"><i class="icon-map-marker"></i> {{ $order->user->address }}</td>
                             <td class="event-price hidden-xs">{{ formatedPrice($order->total_price) }} RSD</td>

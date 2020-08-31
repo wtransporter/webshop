@@ -20,7 +20,8 @@ class HistoryOrdersController extends Controller
 
     public function show(User $user, Order $order)
     {
-
+        abort_if($user->id != auth()->id(), 403);
+        
         return view('profiles.orders.show', compact('order'));
     }
 }

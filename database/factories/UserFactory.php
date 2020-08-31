@@ -7,8 +7,10 @@ use App\Order;
 use App\Article;
 use App\Category;
 use App\ArticleOrder;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Notifications\DatabaseNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,5 +78,17 @@ $factory->define(ArticleOrder::class, function (Faker $faker) {
         'amount' => rand(1,10),
         'price' => rand(50, 2999),
         'discount' => 0
+    ];
+});
+
+$factory->define(DatabaseNotification::class, function (Faker $faker){
+    return [
+        'id' => Uuid::uuid4()->toString(),
+        'type' => 'App\Notifications\OrderCreated',
+        'notifiable_id' => function () {
+                return auth()->id() ?: factory(User::class);
+        },
+        'notifiable_type' => 'App\User',
+        'data' => ['foo' => 'bar']
     ];
 });

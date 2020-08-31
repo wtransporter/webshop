@@ -7,10 +7,10 @@
             <div class="col-md-12">
                 @include('includes.message')
                 <!-- Action Buttons -->
-                <div class="pull-right">
+                {{-- <div class="pull-right">
                     <a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-refresh"></i> UPDATE</a>
                     <a href="#" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> CHECK OUT</a>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="row">
@@ -61,6 +61,7 @@
                 <!-- End Shopping Cart Items -->
             </div>
         </div>
+        @if(Session::has('cart'))
         <div class="row">
             <!-- Promotion Code -->
             <div class="col-md-4  col-md-offset-0 col-sm-6 col-sm-offset-6">
@@ -117,6 +118,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>  
 </div>
 @endsection

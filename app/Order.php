@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Notifications\OrderCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -18,5 +19,10 @@ class Order extends Model
     public function articles()
     {
         return $this->belongsToMany('App\Article')->withPivot(['price', 'amount']);
+    }
+
+    public function notify()
+    {
+        User::where('head', 1)->get()->each->notify(new OrderCreated($this));
     }
 }

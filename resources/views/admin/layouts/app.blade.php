@@ -8,6 +8,7 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.7 -->
 	<link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
+
 	<link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
@@ -141,14 +142,28 @@
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+            	<i class="fa fa-bell-o"></i>
+				<span class="label label-warning">{{ Auth::user()->unreadNotifications->count() }}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">You have {{ Auth::user()->unreadNotifications->count() }} notifications</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
+					@foreach (Auth::user()->unreadNotifications as $notification)
+						<li>
+						<form class="clear-form" action="/tp-admin/profiles/{{ Auth::id() }}/notifications/{{ $notification->id }}" method="POST">
+							@csrf
+							@method('DELETE')
+							<a href="#" class="btn-block">
+							<button class="btn btn-default btn-block" style="background-color: white; border: none;">
+								<i class="fa fa-users text-aqua"></i> 
+							{{ $notification->data['user'] .' created order OR'.  lPad($notification->data['order_id']) }}
+							</button>
+							</a>
+						</form>
+						</li>
+					@endforeach
                   <li>
                     <a href="#">
                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
@@ -177,7 +192,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <li class="footer"><a href="/tp-admin/profiles/{{ Auth::id() }}/notifications">View all</a></li>
             </ul>
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
@@ -510,7 +525,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div id="app" class="content-wrapper">
 	@yield('content')
   </div>
   <!-- /.content-wrapper -->
@@ -717,6 +732,8 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+<script src="{{ asset('/js/app.js') }}"></script>
 
 <!-- jQuery 3 -->
 <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>

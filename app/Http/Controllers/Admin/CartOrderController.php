@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Session;
 use App\Cart;
+use App\User;
 use App\Order;
 use App\Article;
 use App\ArticleOrder;
 use Illuminate\Http\Request;
+use App\Notifications\OrderCreated;
 use App\Http\Controllers\Controller;
 
 class CartOrderController extends Controller
@@ -60,6 +62,9 @@ class CartOrderController extends Controller
                 'discount' => 0
             ]);
         }
+        $order->notify();
+        // User::where('head', 1)->get()->each->notify(new OrderCreated($order));
+
         $request->session()->forget('cart');
         return redirect()->back()->with('message', 'Order successfully sent !');
 

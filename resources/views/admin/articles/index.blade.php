@@ -2,17 +2,17 @@
 
 @section('content')
 <!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-      Articles
-      <small>list of available articles</small>
-    </h1>
-        <a href="/tp-admin/articles/create" class="btn btn-primary btn-sm">Create</a>
-    <ol class="breadcrumb">
-      <li><a href="/tp-admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Articles</li>
-    </ol>
-  </section>
+    <section class="content-header">
+        <h1>
+            Articles
+            <small>list of available articles</small>
+        </h1>
+            <a href="/tp-admin/articles/create" class="btn btn-primary btn-sm">Create</a>
+        <ol class="breadcrumb">
+            <li><a href="/tp-admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Articles</li>
+        </ol>
+    </section>
 
   <!-- Main content -->
   <section class="content">
