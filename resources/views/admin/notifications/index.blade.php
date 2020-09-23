@@ -8,7 +8,7 @@
 		Notifications
 		<small>list of all notifications</small>
 	</h1>
-		<a href="/tp-admin/articles/create" class="btn btn-primary btn-sm">Create</a>
+
 	<ol class="breadcrumb">
 		<li><a href="/tp-admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Notifications</li>
@@ -29,7 +29,7 @@
 					<th>Progress</th>
 					<th style="width: 40px">Status</th>
 				</tr>
-			@foreach ($notifications as $notification)
+			@forelse ($notifications as $notification)
 				<tr>
 					<td>{{ $loop->iteration }}.</td>
 					<td>
@@ -45,7 +45,9 @@
 						<toggle-status :data="{{ $notification }}"></toggle-status>
 					</td>
 				</tr>
-			@endforeach
+			@empty
+				<p class="text-red text-xs mt-2">There is no notifications !</p>
+			@endforelse
 			{{-- <tr>
 				<td>1.</td>
 				<td>Update software</td>

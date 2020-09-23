@@ -40,6 +40,14 @@ class NotificationTest extends TestCase
         $this->assertCount(1, $this->getJson('/tp-admin/profiles/{user}/notifications')->json());
     }
 
+
+    // /** @test */
+    // public function unauthenticatrd_users_may_not_see_notifications()
+    // {
+    //     $this->get('/tp-admin/profiles/notifications')->assertRedirect('/login');
+    // }
+    
+
     /** @test */
     public function authenticatrd_users_may_mark_notifications_as_read()
     {

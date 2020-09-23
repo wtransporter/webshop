@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class NotificationsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function index()
     {
         if (request()->wantsJson()) {
