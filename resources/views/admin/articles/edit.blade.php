@@ -105,7 +105,7 @@
                     <div class="col-md-2 col-sm-6 col-xs-12 form-group"  style="margin-top: 20px;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="active" id="active" {{ $article->active ? 'checked' : '' }}">
+                                <input type="checkbox" name="active" id="active" {{ $article->active ? 'checked' : '' }}>
                                 Active
                             </label>
                         </div>
@@ -113,7 +113,7 @@
                     <div class="col-md-2 col-sm-6 col-xs-12 form-group"  style="margin-top: 20px;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="sale" id="sale" {{ $article->sale ? 'checked' : '' }}">
+                                <input type="checkbox" name="sale" id="sale" {{ $article->sale ? 'checked' : '' }}>
                                 Sale
                             </label>
                         </div>

@@ -6,6 +6,7 @@ use App\User;
 use App\Article;
 use App\Category;
 use Tests\TestCase;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -72,8 +73,8 @@ class ManageArticlesTest extends TestCase
         $article = factory(Article::class)->create(['description' => 'Foo']);
 
         $attributes = [
-            'title' => 'updated',
-            'slug' => $article->slug,
+            'title' => 'updated title',
+            'slug' => Str::slug('updated title'),
             'manufacturer' => 'updated',
             'description' => 'updated',
             'code' => '123456789',
@@ -86,7 +87,7 @@ class ManageArticlesTest extends TestCase
 
         $this->patch('/tp-admin/articles/'. $article->slug, $attributes);
 
-        $this->get($article->adminPath().'/edit')->assertOk();
+        $this->get($article->fresh()->adminPath().'/edit')->assertOk();
         
         $this->assertDatabaseHas('articles', $attributes);
     }

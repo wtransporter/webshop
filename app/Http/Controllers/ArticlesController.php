@@ -39,7 +39,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display given article.
      *
      * @param  Article  $article
      * @return \Illuminate\Http\Response

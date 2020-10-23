@@ -18,12 +18,11 @@ class ViewHistoryOrdersTest extends TestCase
     public function authenticated_user_may_see_order_hostory()
     {
         
-        // $this->withoutExceptionHandling();
         $john = $this->signIn();
 
-        $orderBelongsToJohn = factory(Order::class)->create(['user_id' => $john->id]);
+        $orderBelongsToJohn = create(Order::class, ['user_id' => $john->id]);
 
-        $orderNotBelongsToJohn = factory(Order::class)->create();
+        $orderNotBelongsToJohn = create(Order::class);
 
         $this->get('/profiles/'.$john->id.'/history')
             ->assertSee($orderBelongsToJohn->user->name)
@@ -35,12 +34,11 @@ class ViewHistoryOrdersTest extends TestCase
     public function unauthenticated_users_may_not_see_other_users_order_list()
     {
         
-        // $this->withoutExceptionHandling();
         $john = $this->signIn();
 
-        $orderBelongsToJohn = factory(Order::class)->create(['user_id' => $john->id]);
+        $orderBelongsToJohn = create(Order::class, ['user_id' => $john->id]);
 
-        $orderNotBelongsToJohn = factory(Order::class)->create();
+        $orderNotBelongsToJohn = create(Order::class);
 
         $this->get('/profiles/'.$orderNotBelongsToJohn->user_id.'/history')
             ->assertStatus(403);
@@ -50,20 +48,19 @@ class ViewHistoryOrdersTest extends TestCase
     /** @test */
     public function authenticated_users_may_see_single_order()
     {
-        
-        // $this->withoutExceptionHandling();
+
         $john = $this->signIn();
 
-        $orderBelongsToJohn = factory(Order::class)->create(['user_id' => $john->id]);
+        $orderBelongsToJohn = create(Order::class, ['user_id' => $john->id]);
 
-        $article = factory(Article::class)->create();
+        $article = create(Article::class);
 
-        $orderDetailsBelongsToJohn = factory(ArticleOrder::class)->create([
+        $orderDetailsBelongsToJohn = create(ArticleOrder::class, [
                 'order_id' => $orderBelongsToJohn->id,
                 'article_id' => $article->id
             ]);
 
-        $orderNotBelongsToJohn = factory(Order::class)->create();
+        $orderNotBelongsToJohn = create(Order::class);
 
         $this->get('/profiles/'.$john->id.'/history/'.$orderBelongsToJohn->id)
             ->assertSee($orderDetailsBelongsToJohn->article_id)
