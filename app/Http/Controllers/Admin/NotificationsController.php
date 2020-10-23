@@ -19,12 +19,15 @@ class NotificationsController extends Controller
         if (request()->wantsJson()) {
             return Auth::user()->notifications->toJson();
         }
-        return view('admin.notifications.index', ['notifications' => Auth::user()->notifications]);
+        return view('admin.notifications.index', [
+            'notifications' => Auth::user()->notifications()->paginate(10)
+        ]);
     }
 
     public function destroy(User $user, $notificationId)
     {
         Auth::user()->notifications()->findOrFail($notificationId)->markAsRead();
 
+        return redirect('tp-admin/profiles/'.$user->id.'/notifications');
     }
 }

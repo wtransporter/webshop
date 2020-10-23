@@ -2,14 +2,11 @@
 
 namespace App\Notifications;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class OrderCreated extends Notification
 {
-    use Queueable;
 
     protected $order;
     /**
@@ -56,6 +53,8 @@ class OrderCreated extends Notification
     public function toArray($notifiable)
     {
         return [
+            'message' => $this->order->user->name .' created order <a href="'.
+                url('tp-admin/'.$this->order->path()).'"> OR' .lpad($this->order->id).'</a>',
             'order_id' => $this->order->id,
             'user' => $this->order->user->name
         ];

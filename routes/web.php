@@ -39,7 +39,7 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::resource('/articles', 'ArticlesController', ['except' => ['show']]);
 
     Route::get('/orders/', 'OrdersController@index');
-    Route::get('/orders/{order}', 'OrdersController@show');
+    Route::get('/orders/{order}', 'OrdersController@show')->name('order');
     
     Route::get('/profiles/{user}/notifications', 'NotificationsController@index');
     Route::delete('/profiles/{user}/notifications/{notification}', 'NotificationsController@destroy');

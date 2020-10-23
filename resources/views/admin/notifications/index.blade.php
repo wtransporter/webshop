@@ -33,8 +33,7 @@
 				<tr>
 					<td>{{ $loop->iteration }}.</td>
 					<td>
-						{{ $notification->data['user'] }} 
-						created order OR{{ lPad($notification->data['order_id']) }}
+						{!! $notification->data['message'] !!}
 					</td>
 					<td>
 					<div class="progress progress-xs">
@@ -93,13 +92,7 @@
 		</div>
 		<!-- /.box-body -->
 		<div class="box-footer clearfix">
-			<ul class="pagination pagination-sm no-margin pull-right">
-			<li><a href="#">«</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">»</a></li>
-			</ul>
+			{{ $notifications->links() }}
 		</div>
 	</div>
 </section>

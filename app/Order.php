@@ -25,4 +25,9 @@ class Order extends Model
     {
         User::where('head', 1)->get()->each->notify(new OrderCreated($this));
     }
+
+    public function path()
+    {
+        return 'orders/'. $this->id;
+    }
 }
