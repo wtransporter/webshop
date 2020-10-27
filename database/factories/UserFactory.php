@@ -73,8 +73,8 @@ $factory->define(Order::class, function (Faker $faker) {
 
 $factory->define(ArticleOrder::class, function (Faker $faker) {
     return [
-        'order_id' => factory(Order::class)->create()->id,
-        'article_id' => factory(Article::class)->create()->id,
+        'order_id' => factory(Order::class),
+        'article_id' => factory(Article::class),
         'amount' => rand(1,10),
         'price' => rand(50, 2999),
         'discount' => 0

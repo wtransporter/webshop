@@ -7,7 +7,8 @@ function currentUser()
 
 function formatedDate($date)
 {
-	return date_format($date, 'd.m.Y H:i:s');
+	$formated =  \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date);
+	return date_format($formated, 'd.m.Y');
 }
 
 function formatedPrice($price)

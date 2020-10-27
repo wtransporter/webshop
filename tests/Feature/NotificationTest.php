@@ -37,7 +37,7 @@ class NotificationTest extends TestCase
         
         $notification = factory(DatabaseNotification::class)->create(['notifiable_id' => $user->id]);
 
-        $this->assertCount(1, $this->getJson('/tp-admin/profiles/{user}/notifications')->json());
+        $this->assertCount(1, $this->getJson('/tp-admin/profiles/'.$user->id.'/notifications')->json());
     }
 
 

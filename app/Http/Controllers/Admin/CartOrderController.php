@@ -24,7 +24,7 @@ class CartOrderController extends Controller
                 $articles[] = $item;
             }
         }
-// dd($cart);
+
         return view('cart.index', [
                 'articles' => $articles,
                 'totalPrice' => $cart->totalPrice ?? 0
@@ -42,6 +42,12 @@ class CartOrderController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Store given order, order items and emty cart
+     * 
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function store(Request $request)
     {
         $cart = $this->getCart($request);
@@ -52,18 +58,8 @@ class CartOrderController extends Controller
             'total_price' => $cart->totalPrice,
             'status' => 0
         ]);
-        // dd($cart->items);
-        foreach ($cart->items as $article) {
-            $orderItems = ArticleOrder::create([
-                'order_id' => $order->id,
-                'article_id' => $article['items']->id,
-                'amount' => $article['amount'],
-                'price' => $article['price'],
-                'discount' => 0
-            ]);
-        }
-        $order->notify();
-        // User::where('head', 1)->get()->each->notify(new OrderCreated($order));
+
+        $order->addItems($cart->items);
 
         $request->session()->forget('cart');
         return redirect()->back()->with('message', 'Order successfully sent !');
@@ -71,7 +67,7 @@ class CartOrderController extends Controller
     }
 
     /**
-    * Delete the given article.
+    * Remove the given article from cart.
     *
     * @param Article $article
     * @return \Illuminate\Http\RedirectResponse
