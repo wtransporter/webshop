@@ -229,4 +229,20 @@ return [
 
     ],
 
+    /**
+     * BSWebService config data
+     */
+
+    'biznisoft' => [
+        'language' => env('BS_LANGUAGE', 0),
+        'companyID' => env('BS_COMPANY_ID', 1),
+        'companyYear' => env('BS_COMPANY_YEAR', 2020),
+        'userName' => env('BS_USER_NAME', ''),
+        'password' => env('BS_PASSWORD', ''),
+        'bsLiveID' => env('BS_LIVE_ID', ''),
+        'bsLivePassword' => env('BS_LIVE_PASSWORD', ''),
+        'compress' => env('BS_COMPRESS', false),
+        'url' => env('BS_URL', ''),
+     ]
+
 ];

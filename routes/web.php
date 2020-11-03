@@ -38,6 +38,9 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
 
     Route::resource('/articles', 'ArticlesController', ['except' => ['show']]);
 
+    Route::get('/administration', 'ImportsController@index')->name('administration');
+    Route::get('/administration/import', 'ImportsController@create')->name('import');
+
     Route::get('/orders/', 'OrdersController@index');
     Route::get('/orders/{order}', 'OrdersController@show')->name('order');
     

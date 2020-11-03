@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -38,5 +39,17 @@ class Article extends Model
     public function orders()
     {
         return $this->belongsToMany('App\Order')->withPivot('price');
+    }
+
+    public static function import($articles)
+    {
+        $articles->each(function($article, $key) {
+            static::updateOrCreate([
+                'title' => $article->Name,
+                'slug' => $article->ID.'-'.Str::slug($article->Name, '-'),
+                'code' => $article->Barcode,
+                'tax' => $article->VatID,
+            ]);
+        });
     }
 }
