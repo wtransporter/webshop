@@ -52,4 +52,14 @@ class Article extends Model
             ]);
         });
     }
+
+    public function activate()
+    {
+        $this->update(['active' => true]);
+    }
+    
+    public function deactivate()
+    {
+        $this->update(['active' => false]);
+    }
 }

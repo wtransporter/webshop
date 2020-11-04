@@ -21,6 +21,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default); 
 Vue.component('toggle-status', require('./components/ToggleStatus.vue').default);
+Vue.component('bs-articles', require('./components/Articles.vue').default);
+Vue.component('paginator', require('./components/Paginator.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

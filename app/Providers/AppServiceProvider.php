@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(BSWebserviceClient::class, function() {
+        $this->app->singleton(BSWebserviceClient::class, function() {
             return new BSWebserviceClient([], config('app.biznisoft.url'));
         });
     }

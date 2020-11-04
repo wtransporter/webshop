@@ -18,9 +18,13 @@ class ArticlesController extends Controller
     
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::paginate(10);
 
-        return view('admin.articles.index', compact('articles'));
+        if (request()->wantsJson()) {
+            return $articles;
+        }
+
+        return view('admin.articles.index');
     }
 
     public function edit(Article $article)

@@ -31,7 +31,8 @@
             </div> --}}
         </div>
         <div class="box-body">
-            <table id="example1" class="table table-bordered table-hover">
+            <BS-Articles></BS-Articles>
+            {{-- <table id="example" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -70,7 +71,7 @@
                             {{ $article->active ? 'checked' : '' }}>
                         </td>
                         <td class="align-middle">{{ $article->tax }}</td>
-                        <td class="align-middle text-center">
+                        <td class="align-middle text-center" style="min-width: 70px;">
                             <div class="input-group">
                                 <a class="btn btn-primary btn-xs" href="/tp-admin/articles/{{ $article->slug }}/edit"><i class="fa fa-edit"></i></a>
                                 <form style="display: inline-block; padding: 0px;" action="/tp-admin/articles/{{ $article->slug }}" method="POST">
@@ -83,12 +84,11 @@
                     </tr>
                 @endforeach
                 </tbody>
-
-            </table>
+            </table> --}}
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            Footer
+            {{-- {{ $articles->links() }} --}}
         </div>
         <!-- /.box-footer-->
     </div>

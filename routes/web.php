@@ -47,6 +47,7 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::get('/profiles/{user}/notifications', 'NotificationsController@index');
     Route::delete('/profiles/{user}/notifications/{notification}', 'NotificationsController@destroy');
 
+    Route::patch('articles/{article}/activate', 'ArticlesActivationController@update');
 });
 
 Auth::routes();
