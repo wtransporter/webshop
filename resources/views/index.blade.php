@@ -17,7 +17,19 @@
 <div class="section">
     <div class="container">    
 
-        @include ('includes.product', ['articles' => $articles])
+        <div class="col-sm-12 col-md-12">
+            @foreach($articles as $article)
+
+                <x-product :article="$article" />
+
+            @endforeach
+        </div>
+
+        <div class="pagination-wrapper ">
+            {{ $articles->links() }}
+        </div>
+        
+        {{-- @include ('includes.product', ['articles' => $articles]) --}}
 
     </div>
 </div>

@@ -1,6 +1,5 @@
 
-<div class="col-sm-12 col-md-12">
-	@foreach($articles as $article)
+
 		<div class="col-md-3 col-sm-6">
 			<!-- Product -->
 			<div class="shop-item" style="height:357px">
@@ -35,8 +34,3 @@
 			</div>
 			<!-- End Product -->
 		</div>
-	@endforeach
-</div>
-<div class="pagination-wrapper ">
-	{{ $articles->links() }}
-</div>
