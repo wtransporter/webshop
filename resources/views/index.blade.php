@@ -10,7 +10,6 @@
 
 
 <x-product-slider :articles="$featured" />
-{{-- @include ('includes.product_slider', ['articles' => $featured]) --}}
 
 @include ('includes.breadcrumb', ['title' => 'Aktuelni proizvodi'])
 
@@ -28,15 +27,13 @@
         <div class="pagination-wrapper ">
             {{ $articles->links() }}
         </div>
-        
-        {{-- @include ('includes.product', ['articles' => $articles]) --}}
 
     </div>
 </div>
 
 @include ('includes.action')
 
-@include ('includes.map')
+<x-google-map />
 
 @endsection
 
