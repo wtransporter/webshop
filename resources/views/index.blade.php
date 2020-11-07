@@ -9,7 +9,8 @@
 @include ('includes.breadcrumb', ['title' => 'Najnoviji proizvodi'])
 
 
-@include ('includes.product_slider', ['articles' => $featured])
+<x-product-slider :articles="$featured" />
+{{-- @include ('includes.product_slider', ['articles' => $featured]) --}}
 
 @include ('includes.breadcrumb', ['title' => 'Aktuelni proizvodi'])
 
