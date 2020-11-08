@@ -28,7 +28,8 @@ class UserSeeder extends Seeder
             ->each(function($user){
                 return factory(Order::class, 2)->create(['user_id' => $user->id])
                     ->each(function($order) {
-                        return factory(ArticleOrder::class)->create();
+                        return factory(ArticleOrder::class)
+                            ->create(['order_id' => $order->id]);
                     });
             });
     }

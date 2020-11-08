@@ -15,7 +15,7 @@
               <th>Ordered By</th>
               <th>Order Date</th>
               <th>Status</th>
-              <th>Subtotal</th>
+              <th colspan="2">Subtotal</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +26,9 @@
                         <td>{{ formatedDate($order->created_at) }}</td>
                         <td>{{ $order->status == 1 ? 'Delivered' : 'Pending' }}</td>
                         <td>{{ formatedPrice($order->total_price) }}</td>
+                        <td>
+                          <a href="{{ route('order', $order->id) }}"> Details</a>
+                        </td>
                     </tr>        
                 @endforeach
             </tbody>
@@ -35,7 +38,7 @@
               <th>Browser</th>
               <th>Platform(s)</th>
               <th>Engine version</th>
-              <th>CSS grade</th>
+              <th colspan="2">CSS grade</th>
             </tr>
             </tfoot>
           </table>
