@@ -81,7 +81,7 @@
         </div>
         <!-- /.row -->
 		<div class="row">
-			<div class="col-sm-8">
+			<div class="col-sm-8 col-md-8">
 				<!-- TABLE: LATEST ORDERS -->
 				<div class="box box-primary">
 					<div class="box-header with-border">
@@ -138,7 +138,7 @@
 				</div>
 				<!-- /.box -->
 			</div>
-			<div class="col-md-4">
+			<div class="col-sm-4 col-md-4">
 				<!-- PRODUCT LIST -->
 				<div class="box box-primary">
 					<div class="box-header with-border">

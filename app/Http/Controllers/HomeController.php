@@ -10,8 +10,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $featured = Article::latest()->take(8)->get();
-        $articles = Article::latest()->paginate(12);
+        $featured = Article::activeArticles()->latest()->take(8)->get();
+        $articles = Article::activeArticles()->latest()->paginate(12);
 
         return view('index', compact('featured','articles'));
     }

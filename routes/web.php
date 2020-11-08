@@ -24,7 +24,7 @@ Route::get('/profiles/{user}/history/{order}', 'HistoryOrdersController@show');
 
 Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
 
-    Route::get('/home', 'PagesController@index');
+    Route::get('/home', 'PagesController@index')->name('dashboard');
     Route::get('/cart', 'CartOrderController@index');
     Route::get('/cart/{article:id}', 'CartOrderController@show');
     Route::post('/cart', 'CartOrderController@store');

@@ -25,7 +25,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
+        <li class="treeview {{ url()->current() == url('/tp-admin/home') ? 'active' : '' }}">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
@@ -33,7 +33,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+            <li class="{{ url()->current() == url('/tp-admin/home') ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>

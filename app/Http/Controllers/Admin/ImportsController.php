@@ -36,7 +36,11 @@ class ImportsController extends Controller
      */
     public function create(BSWebService $service)
     {       
-        $articles = $service->getItems();
+        try {
+            $articles = $service->getItems();
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
 
         try {
             Article::import($articles);

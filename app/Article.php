@@ -44,10 +44,12 @@ class Article extends Model
     public static function import($articles)
     {
         $articles->each(function($article, $key) {
-            static::updateOrCreate([
+            static::Create([
                 'title' => $article->Name,
                 'slug' => $article->ID.'-'.Str::slug($article->Name, '-'),
                 'code' => $article->Barcode,
+                'price' => $article->RetailPrice,
+                'amount' => $article->Amount,
                 'tax' => $article->VatID,
             ]);
         });
@@ -61,5 +63,13 @@ class Article extends Model
     public function deactivate()
     {
         $this->update(['active' => false]);
+    }
+
+    /**
+     * Only active articles to display
+     */
+    public function scopeActiveArticles($query)
+    {
+        return $query->whereActive(1);
     }
 }
