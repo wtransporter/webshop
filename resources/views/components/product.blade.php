@@ -1,6 +1,5 @@
 
-
-		<div class="col-md-3 col-sm-6">
+		<div class="col-sm-6 col-md-4 col-lg-3">
 			<!-- Product -->
 			<div class="shop-item" style="height:357px">
 				<!-- Product Image -->

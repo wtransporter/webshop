@@ -6,12 +6,16 @@
 
 @include ('includes.slider')
                     
-@include ('includes.breadcrumb', ['title' => 'Najnoviji proizvodi'])
-
+<x-section-breadcrumb>
+    Najnoviji proizvodi
+</x-section-breadcrumb>
 
 <x-product-slider :articles="$featured" />
 
-@include ('includes.breadcrumb', ['title' => 'Aktuelni proizvodi'])
+<x-section-breadcrumb>
+    Aktuelni proizvodi
+</x-section-breadcrumb>
+
 
 <div class="section">
     <div class="container">    
