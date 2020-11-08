@@ -28,7 +28,7 @@ class ImportsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Method for creating a new order.
      *
      * @param BSWebService $service
      * 
@@ -46,7 +46,7 @@ class ImportsController extends Controller
             Article::import($articles);
         } catch (\PDOException $e) {
 			return redirect()->back()->withErrors(
-				"Error importin data: ". $e->errorInfo[2]
+				"Error importing data: ". $e->errorInfo[2]
 			);
         }
 

@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title',100);
             $table->string('slug')->unique();
-            $table->string('manufacturer',30)->nullable();
+            $table->string('manufacturer',50)->nullable();
             $table->text('description')->nullable();
             $table->string('code',15)->default('')->unique();
             $table->integer('bs_code')->unique();

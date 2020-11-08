@@ -44,10 +44,11 @@ class Article extends Model
     public static function import($articles)
     {
         $articles->each(function($article, $key) {
-            static::Create([
+            static::updateOrCreate(['bs_code' => $article->ID], [
                 'title' => $article->Name,
                 'slug' => $article->ID.'-'.Str::slug($article->Name, '-'),
                 'code' => $article->Barcode,
+                'bs_code' => $article->ID,
                 'price' => $article->RetailPrice,
                 'amount' => $article->Amount,
                 'tax' => $article->VatID,
