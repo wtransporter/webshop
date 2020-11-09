@@ -88,8 +88,10 @@ class ArticlesController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-
-        return redirect()->back();
+        
+        if (request()->expectsJson()) {
+            return response(['status' => 'Article successfully deleted.']);
+        }
     }
 
 }

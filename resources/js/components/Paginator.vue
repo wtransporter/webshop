@@ -21,10 +21,6 @@
             <a class="page-link" href="#" @click.prevent="page = page+1">Next</a>
         </li>
     </ul>
-    <input type="text" 
-        v-model="strana"
-    >
-    <button @click="goToPage">GO</button>
     </nav>
 </template>
 
@@ -72,11 +68,6 @@
                 history.pushState(null, null, '?page=' + this.page);
             },
 
-            goToPage() {
-                this.page  =this.strana;
-                page();
-                this.strana = '';
-            }
         },
 
         computed: {

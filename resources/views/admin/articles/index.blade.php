@@ -30,7 +30,7 @@
                 <i class="fa fa-times"></i></button>
             </div> --}}
         </div>
-        <div class="box-body">
+        <div class="box-body table-responsive">
             <BS-Articles></BS-Articles>
             {{-- <table id="example" class="table table-bordered table-hover">
                 <thead>

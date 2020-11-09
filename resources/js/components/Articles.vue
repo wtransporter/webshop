@@ -17,8 +17,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-bind:key="article.id" v-for="(article) in items">
-
+			<tr v-bind:key="article.id" v-for="(article, index) in items">
 				<td class="align-middle" v-text="article.id"></td>
 				<!-- <td class="align-middle text-center" style="padding: 0px; width: 50px; height: 50px;">
 					<a href="#">
@@ -42,18 +41,20 @@
 						@change="article.active = !article.active"
 						@click="changeStatus(article.slug, article.active)">
 				</td>
-				<!--
-				<td class="align-middle">{{ data.tax }}</td>
+				<td class="align-middle">{{ article.tax }}</td>
 				<td class="align-middle text-center" style="min-width: 70px;">
 					<div class="input-group">
-						<a class="btn btn-primary btn-xs" href="/tp-admin/articles/{{ $article->slug }}/edit"><i class="fa fa-edit"></i></a>
-						<form style="display: inline-block; padding: 0px;" action="/tp-admin/articles/{{ $article->slug }}" method="POST">
+						<a class="btn btn-primary btn-xs" :href="'/tp-admin/articles/'+article.slug+'/edit'"><i class="fa fa-edit"></i></a>
+						<a @click="destroy(article.slug, index)" style="margin-left: 5px;" class="btn btn-danger btn-xs">
+							<i class="fa fa-trash"></i>
+						</a>
+						<!-- <form style="display: inline-block; padding: 0px;" action="/tp-admin/articles/{{ $article->slug }}" method="POST">
 							@csrf
 							@method('DELETE')
 							<button style="margin-left: 5px;" class="btn btn-danger btn-xs" type="submit"><i class="fa fa-trash"></i></button>
-						</form>
+						</form> -->
 					</div>
-				</td> -->
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -105,6 +106,16 @@
 					active: !checked,
 					_method: 'patch'
 				});
+			},
+
+			destroy(id, item) {
+
+				axios.post("/tp-admin/articles/" + id, {
+					_method: 'delete'
+				});
+				
+				this.items.splice(item, 1);
+
 			}
 
 		}

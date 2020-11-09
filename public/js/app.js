@@ -1971,6 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2004,6 +2005,12 @@ __webpack_require__.r(__webpack_exports__);
         active: !checked,
         _method: 'patch'
       });
+    },
+    destroy: function destroy(id, item) {
+      axios.post("/tp-admin/articles/" + id, {
+        _method: 'delete'
+      });
+      this.items.splice(item, 1);
     }
   }
 });
@@ -2078,10 +2085,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['dataSet'],
   data: function data() {
@@ -2114,11 +2117,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     updatePage: function updatePage() {
       history.pushState(null, null, '?page=' + this.page);
-    },
-    goToPage: function goToPage() {
-      this.page = this.strana;
-      page();
-      this.strana = '';
     }
   },
   computed: {
@@ -2664,7 +2662,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.items, function(article) {
+            _vm._l(_vm.items, function(article, index) {
               return _c("tr", { key: article.id }, [
                 _c("td", {
                   staticClass: "align-middle",
@@ -2710,7 +2708,47 @@ var render = function() {
                       }
                     }
                   })
-                ])
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(article.tax))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticClass: "align-middle text-center",
+                    staticStyle: { "min-width": "70px" }
+                  },
+                  [
+                    _c("div", { staticClass: "input-group" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary btn-xs",
+                          attrs: {
+                            href: "/tp-admin/articles/" + article.slug + "/edit"
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-edit" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-danger btn-xs",
+                          staticStyle: { "margin-left": "5px" },
+                          on: {
+                            click: function($event) {
+                              return _vm.destroy(article.slug, index)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash" })]
+                      )
+                    ])
+                  ]
+                )
               ])
             }),
             0
@@ -2910,30 +2948,7 @@ var render = function() {
             )
           ],
           2
-        ),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.strana,
-              expression: "strana"
-            }
-          ],
-          attrs: { type: "text" },
-          domProps: { value: _vm.strana },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.strana = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("button", { on: { click: _vm.goToPage } }, [_vm._v("GO")])
+        )
       ])
     : _vm._e()
 }
