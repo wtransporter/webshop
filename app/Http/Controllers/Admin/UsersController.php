@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -13,6 +15,7 @@ class UsersController extends Controller
 
     public function index()
     {
-    	return view('index');
+        $users = User::paginate(15);
+        return view('admin.users.index', compact('users'));
     }
 }

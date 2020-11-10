@@ -32,16 +32,8 @@
                     </tr>        
                 @endforeach
             </tbody>
-            <tfoot>
-            <tr>
-              <th>Rendering engine</th>
-              <th>Browser</th>
-              <th>Platform(s)</th>
-              <th>Engine version</th>
-              <th colspan="2">CSS grade</th>
-            </tr>
-            </tfoot>
           </table>
+          {{ $orders->links() }}
         </div>
         <!-- /.box-body -->
       </div>
