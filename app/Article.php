@@ -9,6 +9,14 @@ class Article extends Model
 {
     protected $guarded = [];
 
+    public static function boot() {
+        parent::boot();
+
+        static::created(function($article){
+            $article->update(['slug' => $article->title]);
+        });
+    }
+
     public function path()
     {
     	return '/articles/'. $this->slug;
@@ -36,6 +44,17 @@ class Article extends Model
         return 'slug';
     }
 
+    public function setSlugAttribute($value)
+    {
+        $slug = Str::slug($value);
+
+        if (static::whereSlug($slug)->exists()) {
+            $slug = "{$slug}-" . md5($this->id);
+        }
+
+        return $this->attributes['slug'] = $slug;
+    }
+
     public function orders()
     {
         return $this->belongsToMany('App\Order')->withPivot('price');
@@ -46,7 +65,7 @@ class Article extends Model
         $articles->each(function($article, $key) {
             static::updateOrCreate(['bs_code' => $article->ID], [
                 'title' => $article->Name,
-                'slug' => $article->ID.'-'.Str::slug($article->Name, '-'),
+                // 'slug' => $article->ID.'-'.Str::slug($article->Name, '-'),
                 'code' => $article->Barcode,
                 'bs_code' => $article->ID,
                 'price' => $article->RetailPrice,

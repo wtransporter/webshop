@@ -17,13 +17,12 @@ class ManageArticlesTest extends TestCase
     /** @test */
     public function users_can_see_articles_and_categories()
     {
-        $article = factory(Article::class)->create();
+        $this->withoutExceptionHandling();
+        factory(Article::class, 5)->create();
 
-        $category = factory(Category::class)->create();
-
+        $articles = Article::latest()->get();
         $this->get('/')
-            ->assertSee($article->title)
-            ->assertSee($category->title);
+            ->assertSee($articles[0]->title);
     }
 
     /** @test */
@@ -44,14 +43,14 @@ class ManageArticlesTest extends TestCase
 
         $article = factory(Article::class)->create();
 
-        $this->get('/tp-admin/articles')
-            ->assertSee($article->title);
+        $this->getJson('/tp-admin/articles')
+            ->assertSee($article->title, $escaped = false);
     }
 
     /** @test */
     public function authenticated_users_may_create_articles()
     {
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         $this->signIn($user = factory(User::class)->create(['head' => 1]));
 
         $this->get('/tp-admin/articles/create')->assertStatus(200);
@@ -59,7 +58,7 @@ class ManageArticlesTest extends TestCase
         $article = factory(Article::class)->make();
 
         $response = $this->post('/tp-admin/articles/', $article->toArray());
-               
+
         $this->get($response->headers->get('Location'))->assertStatus(200);
     }
 

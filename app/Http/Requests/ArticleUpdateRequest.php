@@ -29,11 +29,25 @@ class ArticleUpdateRequest extends FormRequest
             'manufacturer' => 'required',
             'description' => 'required',
             'code' => 'required',
+            'bs_code' => 'sometimes|required',
             'category_id' => 'required',
             'active' => 'sometimes|required',
             'price' => 'required',
             'amount' => 'required',
             'tax' => 'required'
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'active' => !! request()->get('active') ? 1 : 0,
+            // 'price' => mySqlPrice(request()->get('price'))
+        ]);
     }
 }

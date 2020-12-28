@@ -22,7 +22,7 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{ $newOrders }}</h3>
   
                 <p>New Orders</p>
               </div>
@@ -52,7 +52,7 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $registeredUsers }}</h3>
   
                 <p>User Registrations</p>
               </div>
@@ -67,7 +67,7 @@
             <!-- small box -->
             <div class="small-box bg-red">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $uniqueVisitors }}</h3>
   
                 <p>Unique Visitors</p>
               </div>

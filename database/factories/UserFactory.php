@@ -44,14 +44,14 @@ $factory->define(Article::class, function (Faker $faker) {
     $title = ucfirst($faker->words(3, true));
     return [
         'title' => $title,
-        'slug' => rand(1,500).'-'.Str::slug($title,'-'),
+        'slug' => Str::slug($title,'-'),
         'manufacturer' => $faker->company(),
         'description' => $faker->sentence,
         'code' => $faker->ean13,
+        'bs_code' => $faker->unique()->numberBetween(1000, 5010),
         'category_id' => 1,
         'active' => rand(0, 1),
         'price' => $faker->randomFloat(2, 24, 5000),
-        'bs_code' => $faker->unique()->numberBetween(1, 501),
         'amount' => rand(1,50),
         'tax' => 'S1'
     ];

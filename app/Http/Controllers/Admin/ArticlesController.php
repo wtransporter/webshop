@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleUpdateRequest;
+use Illuminate\Auth\Events\Validated;
 
 class ArticlesController extends Controller
 {
@@ -48,7 +49,7 @@ class ArticlesController extends Controller
     {
         $attributes = $request->validated();
 
-        $attributes['active'] = !! $request->get('active') ? 1 : 0;
+        // $attributes['active'] = !! $request->get('active') ? 1 : 0;
 
         $article->update($attributes);
 
@@ -63,18 +64,20 @@ class ArticlesController extends Controller
      */
     public function store(ArticleUpdateRequest $request)
     {
-        $article = Article::create([
-            'title' => $request->get('title'),
-            'slug' => Str::slug($request->get('title'),'-'),
-            'manufacturer' => $request->get('manufacturer'),
-            'description' => $request->get('description'),
-            'code' => $request->get('code'),
-            'category_id' => $request->get('category_id'),
-            'active' => !! $request->get('active') ? 1 : 0,
-            'price' => mySqlPrice($request->get('price')),
-            'amount' => $request->get('amount'),
-            'tax' => 'S1'
-        ]);
+        Article::create($request->validated());
+        // Article::create([
+        //     'title' => $request->get('title'),
+        //     // 'slug' => Str::slug($request->get('title'),'-'),
+        //     'manufacturer' => $request->get('manufacturer'),
+        //     'description' => $request->get('description'),
+        //     'code' => $request->get('code'),
+        //     'bs_code' => $request->get('bs_code'),
+        //     'category_id' => $request->get('category_id'),
+        //     'active' => !! $request->get('active') ? 1 : 0,
+        //     'price' => mySqlPrice($request->get('price')),
+        //     'amount' => $request->get('amount'),
+        //     'tax' => 'S1'
+        // ]);
 
         return redirect()->back()->with('flash', 'Article has been saved !');
     }
