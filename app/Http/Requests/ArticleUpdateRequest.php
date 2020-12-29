@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ArticleUpdateRequest extends FormRequest
@@ -47,7 +48,7 @@ class ArticleUpdateRequest extends FormRequest
     {
         $this->merge([
             'active' => !! request()->get('active') ? 1 : 0,
-            // 'price' => mySqlPrice(request()->get('price'))
+            'price' => str_replace(',', '.', request()->get('price')),
         ]);
     }
 }

@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\User;
 use App\Article;
-use App\Category;
 use Tests\TestCase;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,14 +14,16 @@ class ManageArticlesTest extends TestCase
     use RefreshDatabase, DatabaseMigrations;
 
     /** @test */
-    public function users_can_see_articles_and_categories()
+    public function users_can_see_active_articles_and_categories()
     {
         $this->withoutExceptionHandling();
-        factory(Article::class, 5)->create();
 
-        $articles = Article::latest()->get();
-        $this->get('/')
-            ->assertSee($articles[0]->title);
+        $article = factory(Article::class)->create([
+            'title' => 'Test title',
+            'active' => 1
+        ]);
+
+        $this->get('/')->assertSee($article->title);
     }
 
     /** @test */

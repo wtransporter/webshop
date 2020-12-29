@@ -32,8 +32,8 @@
 				<td class="align-middle">{{ article.manufacturer }}</td>
 				<td class="align-middle">{{ article.description }}</td>
 				<td class="align-middle">{{ article.code }}</td>
-				<td class="align-middle text-right">{{ article.price }}</td>
-				<td class="align-middle text-right">{{ article.amount }}</td>
+				<td class="align-middle text-right">{{ article.price | currency }}</td>
+				<td class="align-middle text-right">{{ article.amount | number }}</td>
 				<td class="align-middle text-center">
 					<input type="checkbox" id="checkbox"
 						
