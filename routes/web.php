@@ -25,9 +25,9 @@ Route::get('/profiles/{user}/history/{order}', 'HistoryOrdersController@show');
 Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
 
     Route::get('/home', 'PagesController@index')->name('dashboard');
-    Route::get('/cart', 'CartOrderController@index');
-    Route::get('/cart/{article:id}', 'CartOrderController@show');
-    Route::post('/cart', 'CartOrderController@store');
+    Route::get('/cart', 'CartOrderController@index')->middleware('verified');
+    Route::get('/cart/{article:id}', 'CartOrderController@show')->middleware('verified');
+    Route::post('/cart', 'CartOrderController@store')->middleware('verified');
     Route::delete('/cart/{article:id}', 'CartOrderController@destroy');
     // Route::get('/articles', 'ArticlesController@index');
     // Route::get('/articles/create', 'ArticlesController@create');
@@ -53,4 +53,4 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::patch('articles/{article}/activate', 'ArticlesActivationController@update');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
