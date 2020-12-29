@@ -4,6 +4,7 @@ namespace App;
 
 use App\User;
 use App\ArticleOrder;
+use App\Events\OrderCreated as EventOrderCreated;
 use App\Notifications\OrderCreated;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +21,11 @@ class Order extends Model
     public function articles()
     {
         return $this->belongsToMany('App\Article')->withPivot(['price', 'amount']);
+    }
+
+    public function items()
+    {
+        return $this->hasMany('App\ArticleOrder');
     }
 
     public function notify()
@@ -46,5 +52,7 @@ class Order extends Model
         }
 
         $this->notify();
+
+        event(new EventOrderCreated($this));
     }
 }
