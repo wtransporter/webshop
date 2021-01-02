@@ -12,11 +12,11 @@
                     <p style="font-weight: bold; "><a class="btn btn-primary btn-xs" href="http://webshop.skynetweb.in.rs/cart/history/5"><i class="fa fa-arrow-left" aria-hidden="true"></i> Nazad</a></p>
                     <div class="panel panel-primary">
                         <div class="panel-heading">					            
-                            Stavke narudzbine: OR-20{{ lPad($order->id) }}
+                            Stavke narudzbine: {{ date("y") .'-OR'.lPad($order->id) }}
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                                Broj narudzbine: OR-20{{ lPad($order->id) }} <br>
+                                Broj narudzbine: {{ date("y") .'-OR'. lPad($order->id) }} <br>
                                 Datum kreiranja: {{ formatedDate($order->created_at) }}  <br>
                                 Za uplatu: {{ formatedPrice($order->total_price) }} <br>
                         </div>

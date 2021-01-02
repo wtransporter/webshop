@@ -4,24 +4,24 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Order;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class HistoryOrdersController extends Controller
 {
-    public function index(User $user)
+    public function __construct()
     {
-        abort_if($user->id != auth()->id(), 403);
-        
+        $this->middleware('order-owner');
+    }
+
+    public function index(User $user)
+    {      
         return view('profiles.index', [
             'orders' => $user->orders
         ]);
     }
 
     public function show(User $user, Order $order)
-    {
-        abort_if($user->id != auth()->id(), 403);
-        
+    {        
         return view('profiles.orders.show', compact('order'));
     }
 }
