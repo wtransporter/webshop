@@ -7,9 +7,7 @@ use App\Cart;
 use App\User;
 use App\Order;
 use App\Article;
-use App\ArticleOrder;
 use Illuminate\Http\Request;
-use App\Notifications\OrderCreated;
 use App\Http\Controllers\Controller;
 
 class CartOrderController extends Controller

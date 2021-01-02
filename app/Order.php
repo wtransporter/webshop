@@ -23,11 +23,6 @@ class Order extends Model
         return $this->belongsToMany('App\Article')->withPivot(['price', 'amount']);
     }
 
-    public function items()
-    {
-        return $this->hasMany('App\ArticleOrder');
-    }
-
     public function notify()
     {
     

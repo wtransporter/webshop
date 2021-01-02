@@ -28,6 +28,7 @@ class SendOrderConfirmationEmail
      */
     public function handle(OrderCreated $event)
     {
-        Mail::to($event->order->user->email)->send(new OrderCreatedEmailNotification($event->order));
+        Mail::to($event->order->user->email)
+            ->send(new OrderCreatedEmailNotification($event->order));
     }
 }

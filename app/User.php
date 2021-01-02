@@ -46,4 +46,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Order')->latest();
     }
+
+    public function orderPath($orderId)
+    {
+        return "profiles/{$this->id}/history/{$orderId}";
+    }
 }
