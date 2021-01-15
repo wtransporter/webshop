@@ -7,7 +7,7 @@
 				<th>Image</th>
 				<th>Title</th>
 				<th>Manufacturer</th>
-				<th>Description</th>
+				<th>Category</th>
 				<th>Item code</th>
 				<th>Price</th>
 				<th>Amount</th>
@@ -30,7 +30,7 @@
 				<td></td>
 				<td class="align-middle">{{article.title}}</td>
 				<td class="align-middle">{{ article.manufacturer }}</td>
-				<td class="align-middle">{{ article.description }}</td>
+				<td class="align-middle">{{ article.category.title }}</td>
 				<td class="align-middle">{{ article.code }}</td>
 				<td class="align-middle text-right">{{ article.price | currency }}</td>
 				<td class="align-middle text-right">{{ article.amount | number }}</td>
@@ -69,7 +69,7 @@
 		data() {
 			return {
 				dataSet: false,
-				items: []
+				// items: []
 			}
 		},
 

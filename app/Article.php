@@ -22,6 +22,11 @@ class Article extends Model
     	return '/articles/'. $this->slug;
     }    
     
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function adminPath()
     {
     	return '/tp-admin/articles/'. $this->slug;
