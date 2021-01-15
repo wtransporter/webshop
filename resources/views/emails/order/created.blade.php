@@ -9,7 +9,7 @@ As soon as we check availability of articles, we will send you confirmation emai
 | Title | Amount | Price |
 | :------------ |-------------:| --------:|
 @foreach ($order->articles as $article)
-| {{ $article->title }} | {{ $article->pivot->amount }} | {{ $article->pivot->price }} |
+| {{ $article->title }} | {{ $article->pivot->amount }} | {{ formatedPrice($article->pivot->price) }} |
 @endforeach
 
 @endcomponent

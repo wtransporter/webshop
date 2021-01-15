@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 
-// Route::get('/dashboard', 'UsersController@index');
-
-Route::get('/articles/{article}', 'ArticlesController@show');
+Route::get('/articles/{article}', 'ArticlesController@show')->name('article');
 
 Route::get('/profiles/{user}/history', 'HistoryOrdersController@index');
 Route::get('/profiles/{user}/history/{order}', 'HistoryOrdersController@show');
@@ -29,12 +27,6 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::get('/cart/{article:id}', 'CartOrderController@show')->middleware('verified');
     Route::post('/cart', 'CartOrderController@store')->middleware('verified');
     Route::delete('/cart/{article:id}', 'CartOrderController@destroy');
-    // Route::get('/articles', 'ArticlesController@index');
-    // Route::get('/articles/create', 'ArticlesController@create');
-    // Route::get('/articles/{article}/edit', 'ArticlesController@edit');
-    // Route::patch('/articles/{article}', 'ArticlesController@update');
-    // Route::post('/articles', 'ArticlesController@store');
-    // Route::delete('/articles/{article}', 'ArticlesController@destroy');
 
     Route::resource('/articles', 'ArticlesController', ['except' => ['show']]);
 
@@ -44,7 +36,7 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::get('/administration', 'ImportsController@index')->name('administration');
     Route::get('/administration/import', 'ImportsController@create')->name('import');
 
-    Route::get('/orders/', 'OrdersController@index');
+    Route::get('/orders', 'OrdersController@index');
     Route::get('/orders/{order}', 'OrdersController@show')->name('order');
     
     Route::get('/profiles/{user}/notifications', 'NotificationsController@index');

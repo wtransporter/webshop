@@ -38,9 +38,9 @@
                         @foreach ($order->articles as $item)
                             <tr>
                                 <!--Item Image -->
-                                <td class="image" style="width: 60px;"><a href="http://webshop.skynetweb.in.rs/articles/4"><img style="width: 50px;" src="http://webshop.skynetweb.in.rs/images/proizvodi/4/700x400_11.jpg" alt="Armani Code for Men"></a></td>
+                                <td class="image" style="width: 60px;"><a href="{{ route('article', $item->slug) }}"><img style="width: 50px;" src="{{ $item->imagePath() }}" alt="Armani Code for Men"></a></td>
                                 <td>
-                                    <div class="cart-item-title"><a href="http://webshop.skynetweb.in.rs/articles/4">{{ $item->title }}</a></div>
+                                    <div class="cart-item-title"><a href="{{ route('article', $item->slug) }}">{{ $item->title }}</a></div>
                                     <div class="feature">
                                         Popust: <span>10.00 %</span>
                                     </div>

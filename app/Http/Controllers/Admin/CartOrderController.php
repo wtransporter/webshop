@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Session;
 use App\Cart;
-use App\User;
 use App\Order;
 use App\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class CartOrderController extends Controller
 {
