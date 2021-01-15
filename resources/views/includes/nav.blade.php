@@ -29,6 +29,13 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                @if (Auth::user()->isAdmin())
+                                    <li>
+                                        <a href="{{ route('dashboard') }}">
+                                            Administracija
+                                        </a>
+                                    </li>                                    
+                                @endif
                                 <li>
                                     <a href="/profiles/{{ Auth::user()->id }}/history">
                                         Prethodne kupovine
@@ -56,10 +63,7 @@
             <ul>
                 <li class="logo-wrapper"><a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" alt="WebShop"></a></li>
                 <li class="active">
-                    <a href="{{ route('home') }}">Home</a>
-                </li>
-                <li>
-                    <a href="#">Features</a>
+                    <a href="{{ route('home') }}">Naslovna</a>
                 </li>
                 <li class="has-submenu">
                     <a href="#">Proizvodi +</a>
@@ -84,7 +88,7 @@
                     </div><!-- /mainmenu-submenu -->
                 </li>
                 <li>
-                    <a href="credits.html">Credits</a>
+                    <a href="{{ url('/contact') }}">Kontakt</a>
                 </li>
             </ul>
         </nav>

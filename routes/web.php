@@ -46,3 +46,5 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
 });
 
 Auth::routes(['verify' => true]);
+
+Route::get('/{page}', 'PagesController@show');
