@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <table class="events-list">
-                    @foreach ($orders as $order)
+                    @forelse ($orders as $order)
                         <tr>
                             <td>
                                 <div class="event-date">
@@ -29,7 +29,9 @@
                                 {{-- </form> --}}
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <p class="alert alert-danger">There is no orders to show !</p>    
+                    @endforelse
                 </table>
             </div>
         </div>

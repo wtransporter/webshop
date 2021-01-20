@@ -236,8 +236,9 @@ return [
 
     'biznisoft' => [
         'language' => env('BS_LANGUAGE', 0),
-        'companyID' => env('BS_COMPANY_ID', 1),
-        'companyYear' => env('BS_COMPANY_YEAR', 2020),
+        'companyID' => env('BS_COMPANY_ID', 11),
+        'storageID' => env('BS_STORAGE_ID', 11),
+        'companyYear' => env('BS_COMPANY_YEAR', 2021),
         'userName' => env('BS_USER_NAME', ''),
         'password' => env('BS_PASSWORD', ''),
         'bsLiveID' => env('BS_LIVE_ID', ''),

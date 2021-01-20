@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Article;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\BSWebService;
+use Exception;
 
 class ImportsController extends Controller
 {
@@ -35,17 +37,27 @@ class ImportsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(BSWebService $service)
-    {       
+    {
         try {
-            $articles = $service->getItems();
+            $articles = $service->items('itArticlesOnStock')
+                ->filter(function ($article, $key) {
+                    return ($article->Barcode != NULL || $article->Barcode != '');
+                })
+                ->get();
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
 
         try {
+            DB::beginTransaction();
+
             Article::import($articles);
+
+            DB::commit();
         } catch (\PDOException $e) {
-			return redirect()->back()->withErrors(
+            DB::rollBack();
+
+            return redirect()->back()->withErrors(
 				"Error importing data: ". $e->errorInfo[2]
 			);
         }

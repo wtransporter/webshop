@@ -22,6 +22,7 @@
                     </li>
                     @guest
                         <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -76,7 +77,10 @@
                                 @endif
                                 <h4>{{ $category->title }}</h4>
                                 <ul>
-                                    <li><a href="index.html">Homepage (Sample 1)</a></li>
+                                    @foreach ($category as $child)
+                                    {{-- <li><a href="index.html">{{ $child->title }}</a></li>     --}}
+                                    @endforeach
+                                    
                                     <li><a href="page-homepage-sample.html">Homepage (Sample 2)</a></li>
                                 </ul>
                                 @if ($loop->last || (fmod($loop->iteration, 5) == 0))

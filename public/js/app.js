@@ -2022,8 +2022,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      dataSet: false // items: []
-
+      dataSet: false,
+      items: []
     };
   },
   created: function created() {
