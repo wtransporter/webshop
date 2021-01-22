@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\BSWebService;
-use Exception;
+use App\Http\Repositories\BSWebService\ItArticlesOnStock;
+use SoapFault;
 
 class ImportsController extends Controller
 {
@@ -32,18 +31,21 @@ class ImportsController extends Controller
     /**
      * Method for creating a new order.
      *
-     * @param BSWebService $service
+     * @param ItArticlesOnStock $service
      * 
      * @return \Illuminate\Http\Response
      */
-    public function create(BSWebService $service)
+    public function create(ItArticlesOnStock $service)
     {
         try {
-            $articles = $service->items('itArticlesOnStock')
-                ->filter(function ($article, $key) {
-                    return ($article->Barcode != NULL || $article->Barcode != '');
-                })
-                ->get();
+            $articles = collect(json_decode($service->items()));
+
+            $articles = $articles->filter(function ($article, $key) {
+                return ($article->Barcode != NULL || $article->Barcode != '');
+            });
+
+        } catch (SoapFault $sf) {
+            return redirect()->back()->withErrors('Error parsing JSON request ! Check JSONs');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
