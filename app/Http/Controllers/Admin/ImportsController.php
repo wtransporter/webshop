@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use SoapFault;
 use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\BSWebService\ItArticlesOnStock;
-use SoapFault;
+use App\Http\Repositories\BiznisoftWebservice\ArticlesOnStock;
 
 class ImportsController extends Controller
 {
@@ -35,7 +35,7 @@ class ImportsController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function create(ItArticlesOnStock $service)
+    public function create(ArticlesOnStock $service)
     {
         try {
             $articles = collect(json_decode($service->items()));

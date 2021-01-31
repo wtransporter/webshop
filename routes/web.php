@@ -39,6 +39,8 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::get('/orders', 'OrdersController@index');
     Route::get('/orders/{order}', 'OrdersController@show')->name('order');
     
+    Route::get('/order/{order}/send', 'OrdersUploadController@index')->name('order.send');
+    
     Route::get('/profiles/{user}/notifications', 'NotificationsController@index');
     Route::delete('/profiles/{user}/notifications/{notification}', 'NotificationsController@destroy');
 

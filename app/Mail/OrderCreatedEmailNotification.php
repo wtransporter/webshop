@@ -25,6 +25,7 @@ class OrderCreatedEmailNotification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.order.created');
+        return $this->subject('Thank you for your purchase')
+                    ->markdown('emails.order.created');
     }
 }

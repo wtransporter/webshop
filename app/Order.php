@@ -24,9 +24,8 @@ class Order extends Model
     }
 
     public function notify()
-    {
-    
-        User::where('head', 1)->get()->each->notify(new OrderCreated($this));
+    {    
+        User::whereHead(1)->get()->each->notify(new OrderCreated($this));
     }
 
     public function path()
@@ -37,7 +36,7 @@ class Order extends Model
     public function addItems($articles)
     {
         foreach ($articles as $article) {
-            $orderItems = ArticleOrder::create([
+            ArticleOrder::create([
                 'order_id' => $this->id,
                 'article_id' => $article['items']->id,
                 'amount' => $article['amount'],
@@ -49,5 +48,10 @@ class Order extends Model
         $this->notify();
 
         event(new EventOrderCreated($this));
+    }
+
+    public function sentToWebservice()
+    {
+        $this->update(['status' => 99]);
     }
 }
