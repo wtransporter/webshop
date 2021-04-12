@@ -10,6 +10,7 @@ class Category extends Model
 
     public function child()
     {
-        return $this->hasMany(Category::class,'id','bscat_id');
+        return $this->hasMany(Category::class,'bscat_id', 'id')
+            ->orderBy('wssort');
     }
 }

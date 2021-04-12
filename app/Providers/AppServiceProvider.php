@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         
         \View::composer('*', function($view) {
-            $view->with('categories', \App\Category::all());
+            $view->with('categories', \App\Category::where('bscat_id', 0)->get());
         });
     }
 }

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/articles/{article}', 'ArticlesController@show')->name('article');
+Route::get('/categories/{category}', 'CategoriesController@show')->name('categories.show');
 
 Route::get('/profiles/{user}/history', 'HistoryOrdersController@index');
 Route::get('/profiles/{user}/history/{order}', 'HistoryOrdersController@show');

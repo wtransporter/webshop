@@ -77,11 +77,9 @@
                                 @endif
                                 <h4>{{ $category->title }}</h4>
                                 <ul>
-                                    @foreach ($category as $child)
-                                    {{-- <li><a href="index.html">{{ $child->title }}</a></li>     --}}
+                                    @foreach ($category->child as $child)
+                                    <li><a href="{{ route('categories.show', $child) }}">{{ $child->title }}</a></li>    
                                     @endforeach
-                                    
-                                    <li><a href="page-homepage-sample.html">Homepage (Sample 2)</a></li>
                                 </ul>
                                 @if ($loop->last || (fmod($loop->iteration, 5) == 0))
                                 </div>
