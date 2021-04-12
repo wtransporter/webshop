@@ -75,7 +75,9 @@
                                 <row>
                                 <div class="col-xs-4 col-md-3 col-lg-3">
                                 @endif
-                                <h4>{{ $category->title }}</h4>
+                                    <a href="{{ route('categories.show', $category) }}">
+                                        <h4>{{ $category->title }}</h4>
+                                    </a>
                                 <ul>
                                     @foreach ($category->child as $child)
                                     <li><a href="{{ route('categories.show', $child) }}">{{ $child->title }}</a></li>    

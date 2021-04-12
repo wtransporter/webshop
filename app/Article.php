@@ -20,11 +20,11 @@ class Article extends Model
     public function path()
     {
     	return '/articles/'. $this->slug;
-    }    
+    }
     
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function adminPath()
