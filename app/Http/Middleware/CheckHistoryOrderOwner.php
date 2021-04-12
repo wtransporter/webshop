@@ -16,7 +16,10 @@ class CheckHistoryOrderOwner
     public function handle($request, Closure $next)
     {
         if ($request->user->id != auth()->id()) {
-            abort(403, 'Access Denied');
+            return redirect('login')->with([
+                'message' => 'You have to be logged in to view this page',
+                'type' => 'danger'
+            ]);
         }
         
         return $next($request);
