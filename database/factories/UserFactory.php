@@ -46,6 +46,7 @@ $factory->define(Article::class, function (Faker $faker) {
         'title' => $title,
         'slug' => Str::slug($title,'-'),
         'manufacturer' => $faker->company(),
+        'excerpt' => $faker->sentence,
         'description' => $faker->sentence,
         'code' => $faker->ean13,
         'bs_code' => $faker->unique()->numberBetween(1000, 5010),
