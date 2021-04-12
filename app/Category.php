@@ -13,4 +13,9 @@ class Category extends Model
         return $this->hasMany(Category::class,'bscat_id', 'id')
             ->orderBy('wssort');
     }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
