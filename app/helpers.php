@@ -16,6 +16,11 @@ function formatedPrice($price)
 	return number_format($price, 2, ",", ".");
 }
 
+function webPrice($price)
+{
+	return number_format($price, 0, ",", ".");
+}
+
 function mySqlPrice($price)
 {
 	return number_format((float) $price, 2, ".", "");
