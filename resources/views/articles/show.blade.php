@@ -19,7 +19,7 @@
                 </div>
                 <h5>Quick Overview</h5>
                 <p>
-                    Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat massa ornare vitae. Ut fermentum justo vel venenatis eleifend. Fusce id magna eros.
+                    {{ $article->excerpt }}
                 </p>
                 <table class="shop-item-selections">
                     <!-- Quantity -->
