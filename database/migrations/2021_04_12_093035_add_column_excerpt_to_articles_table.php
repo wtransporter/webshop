@@ -14,7 +14,7 @@ class AddColumnExcerptToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->text('excerpt')->after('manufacturer');
+            $table->text('excerpt')->after('manufacturer')->default('');
         });
     }
 
@@ -25,8 +25,6 @@ class AddColumnExcerptToArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('excerpt');
-        });
+        
     }
 }

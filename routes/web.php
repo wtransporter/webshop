@@ -48,6 +48,6 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::patch('articles/{article}/activate', 'ArticlesActivationController@update');
 });
 
-Route::get('{page}', 'PagesController@show');
-
 Auth::routes(['verify' => true]);
+
+Route::get('{page}', 'PagesController@show');

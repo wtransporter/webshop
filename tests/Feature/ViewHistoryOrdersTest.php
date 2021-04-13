@@ -6,7 +6,6 @@ use App\Order;
 use App\Article;
 use Tests\TestCase;
 use App\ArticleOrder;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -33,7 +32,6 @@ class ViewHistoryOrdersTest extends TestCase
     /** @test */
     public function unauthenticated_users_may_not_see_other_users_order_list()
     {
-        
         $john = $this->signIn();
 
         $orderBelongsToJohn = create(Order::class, ['user_id' => $john->id]);
@@ -41,14 +39,12 @@ class ViewHistoryOrdersTest extends TestCase
         $orderNotBelongsToJohn = create(Order::class);
 
         $this->get('/profiles/'.$orderNotBelongsToJohn->user_id.'/history')
-            ->assertStatus(403);
-
+            ->assertRedirect('login');
     }
 
     /** @test */
     public function authenticated_users_may_see_single_order()
     {
-
         $john = $this->signIn();
 
         $orderBelongsToJohn = create(Order::class, ['user_id' => $john->id]);
@@ -65,7 +61,6 @@ class ViewHistoryOrdersTest extends TestCase
         $this->get('/profiles/'.$john->id.'/history/'.$orderBelongsToJohn->id)
             ->assertSee($orderDetailsBelongsToJohn->article_id)
             ->assertSee($article->title);
-
     }
 
 }

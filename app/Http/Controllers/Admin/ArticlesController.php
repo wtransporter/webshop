@@ -16,7 +16,7 @@ class ArticlesController extends Controller
     
     public function index()
     {
-        $articles = Article::with('category')->paginate(10);
+        $articles = Article::with('categories')->paginate(10);
 
         if (request()->expectsJson()) {
             return $articles;
