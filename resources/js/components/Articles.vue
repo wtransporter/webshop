@@ -30,7 +30,16 @@
 				<td></td>
 				<td class="align-middle">{{article.title}}</td>
 				<td class="align-middle">{{ article.manufacturer }}</td>
-				<td class="align-middle">{{ article.category.title }}</td>
+				<td class="align-middle" v-if="article.categories.length > 0">
+					<span v-bind:key="category.id" v-for="category in article.categories" class="label label-primary" style="margin-right: 4px;">
+						{{ category.title }} 
+					</span>
+				</td>
+				<td class="align-middle" v-else>
+					<span class="label label-danger">
+						No category
+					</span>
+				</td>
 				<td class="align-middle">{{ article.code }}</td>
 				<td class="align-middle text-right">{{ article.price | currency }}</td>
 				<td class="align-middle text-right">{{ article.amount | number }}</td>

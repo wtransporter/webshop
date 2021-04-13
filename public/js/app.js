@@ -2019,6 +2019,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2726,9 +2735,34 @@ var render = function() {
                   _vm._v(_vm._s(article.manufacturer))
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "align-middle" }, [
-                  _vm._v(_vm._s(article.category.title))
-                ]),
+                article.categories.length > 0
+                  ? _c(
+                      "td",
+                      { staticClass: "align-middle" },
+                      _vm._l(article.categories, function(category) {
+                        return _c(
+                          "span",
+                          {
+                            key: category.id,
+                            staticClass: "label label-primary",
+                            staticStyle: { "margin-right": "4px" }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t" +
+                                _vm._s(category.title) +
+                                " \n\t\t\t\t"
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  : _c("td", { staticClass: "align-middle" }, [
+                      _c("span", { staticClass: "label label-danger" }, [
+                        _vm._v("\n\t\t\t\t\tNo category\n\t\t\t\t")
+                      ])
+                    ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "align-middle" }, [
                   _vm._v(_vm._s(article.code))
@@ -16452,8 +16486,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Projekti\webshop\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Projekti\webshop\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Projekti\webshop\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Projekti\webshop\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
