@@ -63,10 +63,10 @@
         <nav id="mainmenu" class="mainmenu">
             <ul>
                 <li class="logo-wrapper"><a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" alt="WebShop"></a></li>
-                <li class="active">
+                <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
                     <a href="{{ route('home') }}">Naslovna</a>
                 </li>
-                <li class="has-submenu">
+                <li class="has-submenu {{ request()->routeIs('categories*') ? 'active' : '' }}">
                     <a href="#">Proizvodi +</a>
                     <div class="mainmenu-submenu">
                         <div class="mainmenu-submenu-inner"> 
@@ -91,7 +91,7 @@
                         </div><!-- /mainmenu-submenu-inner -->
                     </div><!-- /mainmenu-submenu -->
                 </li>
-                <li>
+                <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}">
                     <a href="{{ url('/contact') }}">Kontakt</a>
                 </li>
             </ul>
