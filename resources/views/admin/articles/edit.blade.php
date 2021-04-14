@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3" name="description" id="description" placeholder="Description ..." required>{{ $article->description }}</textarea>
+                    <textarea id="ckeditor" name="description" rows="10" cols="80" placeholder="Description ..." required>{{ $article->description }}</textarea>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-12 form-group">
@@ -129,3 +129,13 @@
 </section>
 
 @endsection
+
+@push('script')
+<!-- CK Editor -->
+<script src="{{ asset('/bower_components/ckeditor/ckeditor.js') }}"></script>
+<script>
+  $(function () {
+    CKEDITOR.replace('ckeditor')
+  })
+</script>
+@endpush

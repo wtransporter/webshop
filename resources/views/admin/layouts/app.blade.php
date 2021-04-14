@@ -604,5 +604,6 @@
         $('.sparkbar').sparkline('html', {type: 'bar'} );
         // $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
     </script>
+    @stack('script')
 </body>
 </html>
