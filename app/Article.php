@@ -29,7 +29,7 @@ class Article extends Model
     
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
     public function adminPath()
@@ -58,7 +58,7 @@ class Article extends Model
     {
         $slug = Str::slug($value);
 
-        if (static::whereSlug($slug)->exists()) {
+        if (static::whereSlug($slug)->where('id', '<>', $this->id)->exists()) {
             $slug = "{$slug}-" . md5($this->id);
         }
 

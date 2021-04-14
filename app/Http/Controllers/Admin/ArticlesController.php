@@ -45,9 +45,11 @@ class ArticlesController extends Controller
     public function update(Article $article, ArticleUpdateRequest $request)
     {
         $attributes = $request->validated();
+        unset($attributes['categories']);
 
         $article->update($attributes);
-
+        $article->categories()->sync($request->categories);
+        
         return redirect($article->adminPath().'/edit')->with('flash', 'Changes successfully stored !');
     }
 

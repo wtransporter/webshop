@@ -87,12 +87,17 @@
                     <div class="col-md-3 col-sm-6 col-xs-12 form-group">
                         <div class="form-group">
                             <label>Category</label>
-                            <select class="form-control" name="category_id" id="category_id"  required>
+                            <select class="form-control" name="categories[]" id="categories" multiple required>
                                 <option value>--------</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{ $article->category_id == $category->id ? 'selected' : '' }}>
+                                    <option value="{{ $category->id }}" {{ in_array($category->id, $article->categories->pluck('id')->toArray())  ? 'selected' : '' }}>
                                         {{ $category->title }}
                                     </option>
+                                    @foreach ($category->child as $subCat)
+                                        <option value="{{ $subCat->id }}" {{ in_array($subCat->id, $article->categories->pluck('id')->toArray())  ? 'selected' : '' }}>
+                                            - {{ $subCat->title }}
+                                        </option>
+                                    @endforeach
                                 @endforeach
                             </select>
                         </div>

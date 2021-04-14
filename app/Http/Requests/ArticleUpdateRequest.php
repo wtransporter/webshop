@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ArticleUpdateRequest extends FormRequest
@@ -31,7 +30,7 @@ class ArticleUpdateRequest extends FormRequest
             'description' => 'required',
             'code' => 'required',
             'bs_code' => 'sometimes|required',
-            'category_id' => 'required',
+            'categories' => 'required|array',
             'active' => 'sometimes|required',
             'price' => 'required',
             'amount' => 'required',
