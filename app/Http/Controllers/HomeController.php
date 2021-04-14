@@ -11,9 +11,7 @@ class HomeController extends Controller
     {
         $ids = Category::all()->pluck('id');
         return view('index', [
-            'featured' => Article::whereHas('categories', function ($query) use ($ids) {
-                    $query->whereIn('categories.id', $ids);
-                })->activeArticles()->latest()->take(8),
+            'featured' => Article::newest()->get(),
             'articles' => Article::whereHas('categories', function ($query) use ($ids) {
                     $query->whereIn('categories.id', $ids);
                 })->activeArticles()->paginate(12)

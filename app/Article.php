@@ -102,4 +102,12 @@ class Article extends Model
     {
         return $query->whereActive(1);
     }
+
+    public function scopeNewest($query, $take = 8)
+    {
+        $ids = Category::all()->pluck('id');
+        return static::whereHas('categories', function () use ($query, $ids) {
+            $query->whereIn('categories.id', $ids);
+        })->activeArticles()->latest()->take($take);
+    }
 }
