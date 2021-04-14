@@ -13,13 +13,18 @@ class Article extends Model
         parent::boot();
 
         static::created(function($article){
-            $article->update(['slug' => $article->title]);
+            $article->update(['slug' => $this->prepareForSlug($article->title)]);
         });
+    }
+
+    private function prepareForSlug($slug)
+    {
+        return str_replace(',', '',str_replace('/', '', $slug));
     }
 
     public function path()
     {
-    	return '/articles/'. $this->slug;
+    	return '/categories/' . $this->categories->first()->slug . '/' . $this->slug;
     }
     
     public function categories()

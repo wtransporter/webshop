@@ -7,7 +7,7 @@
             <!-- Product Image -->
             <div class="col-sm-6">
                 <div class="product-image-large">
-                    <img src="{{ file_exists(public_path().$article->imageBasePath().'/700x400_'.$article->image1) ? $article->imageBasePath().'/700x400_'.$article->image1 : noImage() }}" alt="Item Name">
+                    <img src="{{ file_exists(public_path().$article->imageBasePath().'/700x400_'.$article->image1) ? $article->imageBasePath().'/700x400_'.$article->image1 : $article->imagePath() }}" alt="{{ $article->title }}">
                 </div>
             </div>
             <!-- End Product Image -->

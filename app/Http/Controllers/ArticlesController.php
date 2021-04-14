@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Http\Request;
+use App\Category;
 
 class ArticlesController extends Controller
 {
@@ -13,7 +13,7 @@ class ArticlesController extends Controller
      * @param  Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show(Category $category, Article $article)
     {
         return view('articles.show', compact('article'));
     }
