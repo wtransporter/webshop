@@ -59,6 +59,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('toggle-status', require('./components/ToggleStatus.vue').default);
 Vue.component('bs-articles', require('./components/Articles.vue').default);
 Vue.component('paginator', require('./components/Paginator.vue').default);
+Vue.component('categories-list', require('./components/categories/CategoriesList.vue').default);
+Vue.component('category-create', require('./components/categories/CategoryCreate.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

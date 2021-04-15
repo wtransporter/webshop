@@ -51,6 +51,11 @@
             <li class="{{ url()->current() == url('/tp-admin/articles') ? 'active' : '' }}"><a href="/tp-admin/articles"><i class="fa fa-circle-o"></i> Article list</a></li>
           </ul>
         </li>
+        <li class="{{ request()->is('tp-admin/categories') ? 'active' : '' }}">
+          <a href="{{ route('categories') }}">
+            <i class="fa fa-list-alt"></i> <span>Categories</span>
+          </a>
+        </li>
         <li class="{{ url()->current() == url('/tp-admin/orders') ? 'active' : '' }} treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -63,7 +68,7 @@
             <li class="{{ url()->current() == url('/tp-admin/orders') ? 'active' : '' }}"><a href="/tp-admin/orders"><i class="fa fa-circle-o"></i> All orders</a></li>
           </ul>
         </li>
-        <li>
+        <li class="{{ request()->is('tp-admin/users') ? 'active' : '' }}">
           <a href="{{ route('users') }}">
             <i class="fa fa-user"></i> <span>Users</span>
             <span class="pull-right-container">
