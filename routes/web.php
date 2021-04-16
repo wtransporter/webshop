@@ -46,9 +46,10 @@ Route::group(['prefix'=> 'tp-admin', 'namespace' => 'Admin',], function () {
     Route::delete('/profiles/{user}/notifications/{notification}', 'NotificationsController@destroy');
 
     Route::patch('articles/{article}/activate', 'ArticlesActivationController@update');
-    Route::get('/categories', 'CategoriesController@index');
+    Route::get('/categories', 'CategoriesController@index')->name('admin.categories');
     Route::get('/categories?v=1', 'CategoriesController@index');
     Route::post('/categories', 'CategoriesController@store')->name('categories');
+    Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('admin.categories.destroy');
 });
 
 Auth::routes(['verify' => true]);

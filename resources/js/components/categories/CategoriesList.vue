@@ -10,6 +10,7 @@
                             <th>Parent Category ID</th>
                             <th>WS Sort</th>
                             <th>WS Nivo</th>
+                            <th>Akcija</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,11 +24,22 @@
                             </td>
                             <td class="align-middle">{{ category.wssort }}</td>
                             <td class="align-middle">{{ category.wsnivo }}</td>
+                            <td class="align-middle">
+                                <base-button
+                                    @clicked="destroy(category.id)"
+                                    :class="'btn-danger btn-xs'"
+                                >Delete</base-button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="box-footer">
+                <div v-if="message">
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                </div>
                 <base-button style="margin-bottom: 5px;"
                     @clicked="visibleForm = !visibleForm"
                     :class="btnType"
@@ -55,7 +67,8 @@
                 items: [],
                 visibleForm: false,
                 btnType: 'btn-primary',
-                caption: 'Create'
+                caption: 'Create',
+                message: null
             }
         },
 
@@ -69,6 +82,13 @@
                     this.items = response.data;
                 });
             },
+
+            destroy(id) {
+                axios.delete("/tp-admin/categories/" + id).then((response) => {
+                    this.message = response.data.message;
+                    this.fetch();
+                });
+            }
         },
 
         watch: {

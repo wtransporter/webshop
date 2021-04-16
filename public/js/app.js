@@ -2274,6 +2274,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2286,7 +2298,8 @@ __webpack_require__.r(__webpack_exports__);
       items: [],
       visibleForm: false,
       btnType: 'btn-primary',
-      caption: 'Create'
+      caption: 'Create',
+      message: null
     };
   },
   created: function created() {
@@ -2298,6 +2311,15 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/tp-admin/categories?v=1').then(function (response) {
         _this.items = response.data;
+      });
+    },
+    destroy: function destroy(id) {
+      var _this2 = this;
+
+      axios["delete"]("/tp-admin/categories/" + id).then(function (response) {
+        _this2.message = response.data.message;
+
+        _this2.fetch();
       });
     }
   },
@@ -3345,7 +3367,27 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", { staticClass: "align-middle" }, [
                   _vm._v(_vm._s(category.wsnivo))
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { staticClass: "align-middle" },
+                  [
+                    _c(
+                      "base-button",
+                      {
+                        class: "btn-danger btn-xs",
+                        on: {
+                          clicked: function($event) {
+                            return _vm.destroy(category.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ],
+                  1
+                )
               ])
             }),
             0
@@ -3357,6 +3399,18 @@ var render = function() {
         "div",
         { staticClass: "box-footer" },
         [
+          _vm.message
+            ? _c("div", [
+                _c("div", { staticClass: "alert alert-success" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.message) +
+                      "\n                "
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("base-button", {
             class: _vm.btnType,
             staticStyle: { "margin-bottom": "5px" },
@@ -3393,7 +3447,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("WS Sort")]),
         _vm._v(" "),
-        _c("th", [_vm._v("WS Nivo")])
+        _c("th", [_vm._v("WS Nivo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Akcija")])
       ])
     ])
   }
