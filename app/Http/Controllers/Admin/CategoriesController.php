@@ -26,7 +26,10 @@ class CategoriesController extends Controller
     {
         $category = Category::create($request->validated());
 
-        return response()->json($category);
+        return response()->json([
+            'code' => 302,
+            'message' => 'Category added successfully!'
+        ]);
     }
 
     public function destroy($id)

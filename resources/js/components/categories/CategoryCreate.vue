@@ -64,9 +64,10 @@
                     wsnivo: this.wsnivo,
                 }
 
-                axios.post('/tp-admin/categories', category).then(() => {
+                axios.post('/tp-admin/categories', category).then((response) => {
                     this.resetData();
                     this.$emit('added');
+                    flash(response.data.message);
                 }).catch(error => {
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors;

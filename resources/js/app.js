@@ -55,7 +55,7 @@ Vue.use(Vue2Filters, Vue2FiltersConfig);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default); 
+Vue.component('base-alert', require('./components/ui/BaseAlert.vue').default); 
 Vue.component('toggle-status', require('./components/ToggleStatus.vue').default);
 Vue.component('bs-articles', require('./components/Articles.vue').default);
 Vue.component('paginator', require('./components/Paginator.vue').default);

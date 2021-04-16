@@ -1,6 +1,7 @@
 <template>
     <section class="content">
         <div class="box box-primary">
+            <base-alert></base-alert>
             <div class="box-body table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead>
@@ -42,7 +43,7 @@
                 </div>
                 <base-button style="margin-bottom: 5px;"
                     @clicked="visibleForm = !visibleForm"
-                    :class="btnType"
+                    :class="'btn-'+btnType"
                     v-text="caption">
                 </base-button>
                 <category-create @added="fetch" :visibleForm="visibleForm">
@@ -66,7 +67,7 @@
             return {
                 items: [],
                 visibleForm: false,
-                btnType: 'btn-primary',
+                btnType: 'primary',
                 caption: 'Create',
                 message: null
             }
@@ -85,7 +86,7 @@
 
             destroy(id) {
                 axios.delete("/tp-admin/categories/" + id).then((response) => {
-                    this.message = response.data.message;
+                    flash(response.data.message);
                     this.fetch();
                 });
             }
@@ -94,10 +95,10 @@
         watch: {
             visibleForm(value) {
                 if (value) {
-                    this.btnType = 'btn-danger';
+                    this.btnType = 'danger';
                     this.caption = 'Close';
                 } else {
-                    this.btnType = 'btn-primary';
+                    this.btnType = 'primary';
                     this.caption = 'Create';
                 }
             }
