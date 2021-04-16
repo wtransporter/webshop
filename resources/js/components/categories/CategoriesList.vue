@@ -28,12 +28,11 @@
                 </table>
             </div>
             <div class="box-footer">
-                <button style="margin-bottom: 5px;"
-                    class="btn btn-sm" 
-                    :class="!visibleForm ? 'btn-primary' : 'btn-danger'" 
-                    @click="visibleForm = !visibleForm" 
-                    v-text="visibleForm ? 'Close' : 'Create'">
-                </button>
+                <base-button style="margin-bottom: 5px;"
+                    @clicked="visibleForm = !visibleForm"
+                    :class="btnType"
+                    v-text="caption">
+                </base-button>
                 <category-create @added="fetch" :visibleForm="visibleForm">
                 </category-create>
             </div>
@@ -42,11 +41,21 @@
 </template>
 
 <script>
+    import BaseButton from '../ui/BaseButton.vue';
+    import CategoryCreate from '../categories/CategoryCreate.vue';
+
     export default {
+        components: { 
+            BaseButton,
+            CategoryCreate
+        },
+
         data() {
             return {
                 items: [],
                 visibleForm: false,
+                btnType: 'btn-primary',
+                caption: 'Create'
             }
         },
 
@@ -60,6 +69,18 @@
                     this.items = response.data;
                 });
             },
+        },
+
+        watch: {
+            visibleForm(value) {
+                if (value) {
+                    this.btnType = 'btn-danger';
+                    this.caption = 'Close';
+                } else {
+                    this.btnType = 'btn-primary';
+                    this.caption = 'Create';
+                }
+            }
         }
     }
 </script>
