@@ -61,6 +61,7 @@ Vue.component('bs-articles', require('./components/Articles.vue').default);
 Vue.component('paginator', require('./components/Paginator.vue').default);
 Vue.component('categories-list', require('./components/categories/CategoriesList.vue').default);
 Vue.component('category-create', require('./components/categories/CategoryCreate.vue').default);
+Vue.component('single-category', require('./components/categories/SingleCategory.vue').default);
 Vue.component('base-button', require('./components/ui/BaseButton.vue').default);
 
 /**

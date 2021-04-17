@@ -15,23 +15,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-bind:key="category.id" v-for="(category, index) in items">
-                            <td class="align-middle" v-text="category.id"></td>
-                            <td class="align-middle">{{ category.title }}</td>
-                            <td class="align-middle">
-                                <span :key="child.id" v-for="child in category.child">
-                                    {{ child.title }}
-                                </span>
-                            </td>
-                            <td class="align-middle">{{ category.wssort }}</td>
-                            <td class="align-middle">{{ category.wsnivo }}</td>
-                            <td class="align-middle">
-                                <base-button
-                                    @clicked="destroy(category.id)"
-                                    :class="'btn-danger btn-xs'"
-                                >Delete</base-button>
-                            </td>
-                        </tr>
+                        <single-category 
+                            v-bind:key="category.id"
+                            v-for="(category, index) in items"
+                            :category="category"
+                            @remove="destroy"
+                            >
+                        </single-category>
                     </tbody>
                 </table>
             </div>
@@ -56,11 +46,13 @@
 <script>
     import BaseButton from '../ui/BaseButton.vue';
     import CategoryCreate from '../categories/CategoryCreate.vue';
+    import SingleCategory from '../categories/SingleCategory.vue';
 
     export default {
         components: { 
             BaseButton,
-            CategoryCreate
+            CategoryCreate,
+            SingleCategory
         },
 
         data() {
@@ -86,8 +78,8 @@
 
             destroy(id) {
                 axios.delete("/tp-admin/categories/" + id).then((response) => {
-                    flash(response.data.message);
                     this.fetch();
+                    flash(response.data.message);
                 });
             }
         },
