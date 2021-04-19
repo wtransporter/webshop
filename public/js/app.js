@@ -2425,13 +2425,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     'category': Object
   },
+  data: function data() {
+    return {
+      confirmDelete: false,
+      timeOut: null
+    };
+  },
   methods: {
     remove: function remove(id) {
       this.$emit('remove', id);
+    },
+    confirm: function confirm() {
+      this.confirmDelete = !this.confirmDelete;
+      this.hide();
+    },
+    cancel: function cancel() {
+      clearTimeout(this.timeOut);
+      this.confirmDelete = !this.confirmDelete;
+    },
+    hide: function hide() {
+      var _this = this;
+
+      this.timeOut = setTimeout(function () {
+        _this.confirmDelete = !_this.confirmDelete;
+      }, 3000);
     }
   }
 });
@@ -4342,14 +4376,53 @@ var render = function() {
       { staticClass: "align-middle" },
       [
         _c(
+          "span",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.confirmDelete,
+                expression: "confirmDelete"
+              }
+            ]
+          },
+          [
+            _c(
+              "base-button",
+              {
+                class: "btn-success btn-xs",
+                on: {
+                  clicked: function($event) {
+                    return _vm.remove(_vm.category.id)
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fa fa-check" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "base-button",
+              { class: "btn-warning btn-xs", on: { clicked: _vm.cancel } },
+              [_c("i", { staticClass: "fa fa-times" })]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
           "base-button",
           {
-            class: "btn-danger btn-xs",
-            on: {
-              clicked: function($event) {
-                return _vm.remove(_vm.category.id)
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.confirmDelete,
+                expression: "!confirmDelete"
               }
-            }
+            ],
+            class: "btn-danger btn-xs",
+            on: { clicked: _vm.confirm }
           },
           [_vm._v("Delete")]
         )
