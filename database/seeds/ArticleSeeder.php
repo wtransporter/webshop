@@ -111,5 +111,7 @@ class ArticleSeeder extends Seeder
             (521, 'Pretplata Flora Magazin 2-5',REPLACE(title,' ','-'), NULL, 'test napomena i opis', '18812998', 0, 0, 0, 750.00, 0.00, 0.00, 'S1', NULL, NULL, NULL, NULL, NULL, '2017-05-10 09:25:59', '2017-05-10 09:25:59', 0),
             (522, 'Asus Laptop X453Ma-Wx417 Promenjen2',REPLACE(title,' ','-'), NULL, '', 'IMP1', 0, 0, 0, 42000.00, 0.00, 10.00, 'S1', NULL, NULL, NULL, NULL, NULL, '2020-07-29 15:01:51', '2020-07-29 15:01:51', 0)"
         );
+
+        DB::statement("INSERT INTO article_category (article_id, category_id) SELECT id, subcat_id FROM articles WHERE subcat_id>0 AND subcat_id<14");
     }
 }

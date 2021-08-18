@@ -5,7 +5,7 @@
 
 
 @include ('includes.slider')
-                    
+
 <x-section-breadcrumb>
     Najnoviji proizvodi
 </x-section-breadcrumb>

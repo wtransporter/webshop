@@ -14,7 +14,7 @@ class AddColumnExcerptToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->text('excerpt')->after('manufacturer')->default('');
+            $table->text('excerpt')->nullable()->after('manufacturer');
         });
     }
 

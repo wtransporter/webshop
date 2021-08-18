@@ -13,7 +13,7 @@ class Article extends Model
         parent::boot();
 
         static::created(function($article){
-            $article->update(['slug' => $this->prepareForSlug($article->title)]);
+            $article->update(['slug' => $article->prepareForSlug($article->title)]);
         });
     }
 

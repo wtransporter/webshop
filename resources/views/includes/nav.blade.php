@@ -75,12 +75,12 @@
                                 <row>
                                 <div class="col-xs-4 col-md-3 col-lg-3">
                                 @endif
-                                    <a href="{{ route('categories.show', $category) }}">
+                                    <a href="{{ route('categories.show', $category->slug) }}">
                                         <h4>{{ $category->title }}</h4>
                                     </a>
                                 <ul>
                                     @foreach ($category->child as $child)
-                                    <li><a href="{{ route('categories.show', $child) }}">{{ $child->title }}</a></li>    
+                                    <li><a href="{{ route('categories.show', $child->slug) }}">{{ $child->title }}</a></li>    
                                     @endforeach
                                 </ul>
                                 @if ($loop->last || (fmod($loop->iteration, 5) == 0))
