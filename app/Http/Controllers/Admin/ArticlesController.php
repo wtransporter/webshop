@@ -75,10 +75,11 @@ class ArticlesController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-        
-        if (request()->expectsJson()) {
-            return response(['status' => 'Proizvod je obrisan.']);
-        }
+
+        return response([
+            'code' => '202', 
+            'message' => 'Article deleted.'
+        ], 202);
     }
 
 }

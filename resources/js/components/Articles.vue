@@ -1,5 +1,6 @@
 <template>
 	<div>
+    <base-alert></base-alert>
 	<table id="example" class="table table-bordered table-hover">
 		<thead>
 			<tr>
@@ -117,16 +118,12 @@
 				});
 			},
 
-			destroy(id, item) {
-
-				axios.post("/tp-admin/articles/" + id, {
-					_method: 'delete'
-				});
-				
-				this.items.splice(item, 1);
-
-			}
-
-		}
-	}
+            destroy(id, item) {
+                axios.delete("/tp-admin/articles/" + id).then((response) => {
+                    flash(response.data.message);
+                    this.items.splice(item, 1);
+                });
+            }
+        }
+    }
 </script>
